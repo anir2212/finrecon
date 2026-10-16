@@ -1,0 +1,38 @@
+[
+  {
+    "ref": "PAY-0000",
+    "issue": "missing_bank"
+  },
+  {
+    "ref": "PAY-0011",
+    "issue": "amount_mismatch"
+  },
+  {
+    "ref": "PAY-0013",
+    "issue": "missing_bank"
+  },
+  {
+    "ref": "PAY-0017",
+    "issue": "duplicate_bank"
+  },
+  {
+    "ref": "PAY-0022",
+    "issue": "amount_mismatch"
+  },
+  {
+    "ref": "PAY-0026",
+    "issue": "missing_bank"
+  },
+  {
+    "ref": "PAY-0033",
+    "issue": "amount_mismatch"
+  },
+  {
+    "ref": "PAY-0034",
+    "issue": "duplicate_bank"
+  },
+  {
+    "ref": "PAY-0039",
+    "issue": "missing_bank"
+  }
+]

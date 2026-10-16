@@ -1,0 +1,11 @@
+__pycache__/
+.pytest_cache/
+.venv/
+data/generated/
+data/*.duckdb
+data/*.duckdb.wal
+reports/
+target/
+logs/
+dbt_packages/
+ops/*.plist

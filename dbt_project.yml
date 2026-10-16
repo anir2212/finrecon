@@ -1,0 +1,13 @@
+name: finrecon
+version: '1.0.0'
+config-version: 2
+profile: finrecon
+model-paths: ['models']
+target-path: target
+clean-targets: ['target', 'dbt_packages']
+models:
+  finrecon:
+    staging:
+      +materialized: view
+    marts:
+      +materialized: view

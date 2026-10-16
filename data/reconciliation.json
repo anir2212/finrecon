@@ -1,0 +1,446 @@
+{
+  "quality": {
+    "ledger_rows": 40,
+    "bank_rows": 38,
+    "ledger_total_cents": -403166,
+    "bank_total_cents": -352988,
+    "missing_references": 0
+  },
+  "matches": [
+    {
+      "ref": "PAY-0000",
+      "status": "missing_bank",
+      "ledger_rows": [
+        "L-0"
+      ],
+      "bank_rows": [],
+      "difference_cents": -11611
+    },
+    {
+      "ref": "PAY-0001",
+      "status": "matched",
+      "ledger_rows": [
+        "L-1"
+      ],
+      "bank_rows": [
+        "B-1"
+      ],
+      "difference_cents": 0
+    },
+    {
+      "ref": "PAY-0002",
+      "status": "matched",
+      "ledger_rows": [
+        "L-2"
+      ],
+      "bank_rows": [
+        "B-2"
+      ],
+      "difference_cents": 0
+    },
+    {
+      "ref": "PAY-0003",
+      "status": "matched",
+      "ledger_rows": [
+        "L-3"
+      ],
+      "bank_rows": [
+        "B-3"
+      ],
+      "difference_cents": 0
+    },
+    {
+      "ref": "PAY-0004",
+      "status": "matched",
+      "ledger_rows": [
+        "L-4"
+      ],
+      "bank_rows": [
+        "B-4"
+      ],
+      "difference_cents": 0
+    },
+    {
+      "ref": "PAY-0005",
+      "status": "matched",
+      "ledger_rows": [
+        "L-5"
+      ],
+      "bank_rows": [
+        "B-5"
+      ],
+      "difference_cents": 0
+    },
+    {
+      "ref": "PAY-0006",
+      "status": "matched",
+      "ledger_rows": [
+        "L-6"
+      ],
+      "bank_rows": [
+        "B-6"
+      ],
+      "difference_cents": 0
+    },
+    {
+      "ref": "PAY-0007",
+      "status": "matched",
+      "ledger_rows": [
+        "L-7"
+      ],
+      "bank_rows": [
+        "B-7"
+      ],
+      "difference_cents": 0
+    },
+    {
+      "ref": "PAY-0008",
+      "status": "matched",
+      "ledger_rows": [
+        "L-8"
+      ],
+      "bank_rows": [
+        "B-8"
+      ],
+      "difference_cents": 0
+    },
+    {
+      "ref": "PAY-0009",
+      "status": "matched",
+      "ledger_rows": [
+        "L-9"
+      ],
+      "bank_rows": [
+        "B-9"
+      ],
+      "difference_cents": 0
+    },
+    {
+      "ref": "PAY-0010",
+      "status": "matched",
+      "ledger_rows": [
+        "L-10"
+      ],
+      "bank_rows": [
+        "B-10"
+      ],
+      "difference_cents": 0
+    },
+    {
+      "ref": "PAY-0011",
+      "status": "amount_mismatch",
+      "ledger_rows": [
+        "L-11"
+      ],
+      "bank_rows": [
+        "B-11"
+      ],
+      "difference_cents": 100
+    },
+    {
+      "ref": "PAY-0012",
+      "status": "matched",
+      "ledger_rows": [
+        "L-12"
+      ],
+      "bank_rows": [
+        "B-12"
+      ],
+      "difference_cents": 0
+    },
+    {
+      "ref": "PAY-0013",
+      "status": "missing_bank",
+      "ledger_rows": [
+        "L-13"
+      ],
+      "bank_rows": [],
+      "difference_cents": -15209
+    },
+    {
+      "ref": "PAY-0014",
+      "status": "matched",
+      "ledger_rows": [
+        "L-14"
+      ],
+      "bank_rows": [
+        "B-14"
+      ],
+      "difference_cents": 0
+    },
+    {
+      "ref": "PAY-0015",
+      "status": "matched",
+      "ledger_rows": [
+        "L-15"
+      ],
+      "bank_rows": [
+        "B-15"
+      ],
+      "difference_cents": 0
+    },
+    {
+      "ref": "PAY-0016",
+      "status": "matched",
+      "ledger_rows": [
+        "L-16"
+      ],
+      "bank_rows": [
+        "B-16"
+      ],
+      "difference_cents": 0
+    },
+    {
+      "ref": "PAY-0017",
+      "status": "duplicate_bank",
+      "ledger_rows": [
+        "L-17"
+      ],
+      "bank_rows": [
+        "B-17",
+        "B-DUP-17"
+      ],
+      "difference_cents": 3972
+    },
+    {
+      "ref": "PAY-0018",
+      "status": "matched",
+      "ledger_rows": [
+        "L-18"
+      ],
+      "bank_rows": [
+        "B-18"
+      ],
+      "difference_cents": 0
+    },
+    {
+      "ref": "PAY-0019",
+      "status": "matched",
+      "ledger_rows": [
+        "L-19"
+      ],
+      "bank_rows": [
+        "B-19"
+      ],
+      "difference_cents": 0
+    },
+    {
+      "ref": "PAY-0020",
+      "status": "matched",
+      "ledger_rows": [
+        "L-20"
+      ],
+      "bank_rows": [
+        "B-20"
+      ],
+      "difference_cents": 0
+    },
+    {
+      "ref": "PAY-0021",
+      "status": "matched",
+      "ledger_rows": [
+        "L-21"
+      ],
+      "bank_rows": [
+        "B-21"
+      ],
+      "difference_cents": 0
+    },
+    {
+      "ref": "PAY-0022",
+      "status": "amount_mismatch",
+      "ledger_rows": [
+        "L-22"
+      ],
+      "bank_rows": [
+        "B-22"
+      ],
+      "difference_cents": 100
+    },
+    {
+      "ref": "PAY-0023",
+      "status": "matched",
+      "ledger_rows": [
+        "L-23"
+      ],
+      "bank_rows": [
+        "B-23"
+      ],
+      "difference_cents": 0
+    },
+    {
+      "ref": "PAY-0024",
+      "status": "matched",
+      "ledger_rows": [
+        "L-24"
+      ],
+      "bank_rows": [
+        "B-24"
+      ],
+      "difference_cents": 0
+    },
+    {
+      "ref": "PAY-0025",
+      "status": "matched",
+      "ledger_rows": [
+        "L-25"
+      ],
+      "bank_rows": [
+        "B-25"
+      ],
+      "difference_cents": 0
+    },
+    {
+      "ref": "PAY-0026",
+      "status": "missing_bank",
+      "ledger_rows": [
+        "L-26"
+      ],
+      "bank_rows": [],
+      "difference_cents": -13998
+    },
+    {
+      "ref": "PAY-0027",
+      "status": "matched",
+      "ledger_rows": [
+        "L-27"
+      ],
+      "bank_rows": [
+        "B-27"
+      ],
+      "difference_cents": 0
+    },
+    {
+      "ref": "PAY-0028",
+      "status": "matched",
+      "ledger_rows": [
+        "L-28"
+      ],
+      "bank_rows": [
+        "B-28"
+      ],
+      "difference_cents": 0
+    },
+    {
+      "ref": "PAY-0029",
+      "status": "matched",
+      "ledger_rows": [
+        "L-29"
+      ],
+      "bank_rows": [
+        "B-29"
+      ],
+      "difference_cents": 0
+    },
+    {
+      "ref": "PAY-0030",
+      "status": "matched",
+      "ledger_rows": [
+        "L-30"
+      ],
+      "bank_rows": [
+        "B-30"
+      ],
+      "difference_cents": 0
+    },
+    {
+      "ref": "PAY-0031",
+      "status": "matched",
+      "ledger_rows": [
+        "L-31"
+      ],
+      "bank_rows": [
+        "B-31"
+      ],
+      "difference_cents": 0
+    },
+    {
+      "ref": "PAY-0032",
+      "status": "matched",
+      "ledger_rows": [
+        "L-32"
+      ],
+      "bank_rows": [
+        "B-32"
+      ],
+      "difference_cents": 0
+    },
+    {
+      "ref": "PAY-0033",
+      "status": "amount_mismatch",
+      "ledger_rows": [
+        "L-33"
+      ],
+      "bank_rows": [
+        "B-33"
+      ],
+      "difference_cents": 100
+    },
+    {
+      "ref": "PAY-0034",
+      "status": "duplicate_bank",
+      "ledger_rows": [
+        "L-34"
+      ],
+      "bank_rows": [
+        "B-34",
+        "B-DUP-34"
+      ],
+      "difference_cents": 5726
+    },
+    {
+      "ref": "PAY-0035",
+      "status": "matched",
+      "ledger_rows": [
+        "L-35"
+      ],
+      "bank_rows": [
+        "B-35"
+      ],
+      "difference_cents": 0
+    },
+    {
+      "ref": "PAY-0036",
+      "status": "matched",
+      "ledger_rows": [
+        "L-36"
+      ],
+      "bank_rows": [
+        "B-36"
+      ],
+      "difference_cents": 0
+    },
+    {
+      "ref": "PAY-0037",
+      "status": "matched",
+      "ledger_rows": [
+        "L-37"
+      ],
+      "bank_rows": [
+        "B-37"
+      ],
+      "difference_cents": 0
+    },
+    {
+      "ref": "PAY-0038",
+      "status": "matched",
+      "ledger_rows": [
+        "L-38"
+      ],
+      "bank_rows": [
+        "B-38"
+      ],
+      "difference_cents": 0
+    },
+    {
+      "ref": "PAY-0039",
+      "status": "missing_bank",
+      "ledger_rows": [
+        "L-39"
+      ],
+      "bank_rows": [],
+      "difference_cents": -19358
+    }
+  ],
+  "fuzzy_suggestions": []
+}

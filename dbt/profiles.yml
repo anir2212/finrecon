@@ -1,0 +1,7 @@
+finrecon:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: "{{ env_var('FINRECON_DB_PATH', 'data/finrecon.duckdb') }}"
+      threads: 1

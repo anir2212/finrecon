@@ -1,0 +1,411 @@
+version: 2
+sources:
+  - name: raw
+    schema: raw
+    description: 'Unmodified CSV strings with file and row metadata.'
+    tables:
+      - name: ledger
+        description: "Grain: One general-ledger AP settlement posting per row. Excludes: Cash receipts, journal reversals, and non-SGD postings."
+        columns:
+          - name: id
+            description: "Unique row identifier within this source feed."
+          - name: reference
+            description: "Payment reference used for exact reconciliation; may be absent from other feeds."
+          - name: posted_on
+            description: "Date recorded by this source, without an intra-day time."
+          - name: posted_at
+            description: "Timezone-aware posting instant; generated fixture uses Asia/Singapore time."
+          - name: counterparty
+            description: "Source spelling of the vendor or payment counterparty."
+          - name: currency
+            description: "ISO currency code; this fixture supports SGD only."
+          - name: amount_cents
+            description: "Signed integer amount in the currency's minor units."
+          - name: account
+            description: "GL account code; usually AP-SETTLEMENT with one SUSPENSE anomaly."
+          - name: contra_account
+            description: "Counter-account; paired with account for journal anomaly features."
+          - name: created_by
+            description: "User who recorded the posting."
+          - name: approved_by
+            description: "User who approved the posting."
+      - name: bank
+        description: "Grain: One bank statement movement per row; a payment can have multiple rows. Excludes: Intraday balances and bank fees in separate statement lines."
+        columns:
+          - name: id
+            description: "Unique row identifier within this source feed."
+          - name: reference
+            description: "Payment reference used for exact reconciliation; may be absent from other feeds."
+          - name: posted_on
+            description: "Date recorded by this source, without an intra-day time."
+          - name: counterparty
+            description: "Source spelling of the vendor or payment counterparty."
+          - name: currency
+            description: "ISO currency code; this fixture supports SGD only."
+          - name: amount_cents
+            description: "Signed integer amount in the currency's minor units."
+      - name: processor
+        description: "Grain: One processor settlement record per row. Excludes: Chargebacks and reserve holds."
+        columns:
+          - name: id
+            description: "Unique row identifier within this source feed."
+          - name: reference
+            description: "Payment reference used for exact reconciliation; may be absent from other feeds."
+          - name: settled_on
+            description: "Processor settlement date."
+          - name: currency
+            description: "ISO currency code; this fixture supports SGD only."
+          - name: gross_cents
+            description: "Gross settlement before processor fee."
+          - name: fee_cents
+            description: "Processor fee; nonnegative integer cents."
+          - name: net_cents
+            description: "Gross less fee; nonnegative integer cents."
+      - name: exchange
+        description: "Grain: One synthetic exchange transfer per row. Excludes: Market prices, network confirmations, and on-chain verification."
+        columns:
+          - name: id
+            description: "Unique row identifier within this source feed."
+          - name: tx_hash
+            description: "Synthetic transaction hash; not verified on-chain."
+          - name: posted_on
+            description: "Date recorded by this source, without an intra-day time."
+          - name: direction
+            description: "Transfer direction relative to the exchange account."
+          - name: currency
+            description: "ISO currency code; this fixture supports SGD only."
+          - name: amount_cents
+            description: "Signed integer amount in the currency's minor units."
+      - name: invoices
+        description: "Grain: One accounts-payable invoice per row. Excludes: Credit notes, partial invoices, and tax line items."
+        columns:
+          - name: id
+            description: "Unique row identifier within this source feed."
+          - name: po_id
+            description: "Referenced purchase-order ID."
+          - name: vendor
+            description: "Vendor name recorded on the invoice."
+          - name: invoice_on
+            description: "Invoice issue date."
+          - name: currency
+            description: "ISO currency code; this fixture supports SGD only."
+          - name: amount_cents
+            description: "Signed integer amount in the currency's minor units."
+          - name: created_by
+            description: "User who entered the invoice."
+      - name: purchase_orders
+        description: "Grain: One approved purchase order per row. Excludes: PO amendments, line-level budgets, and approval history."
+        columns:
+          - name: id
+            description: "Unique row identifier within this source feed."
+          - name: vendor
+            description: "Vendor named on the order."
+          - name: approved_on
+            description: "Date the order was approved."
+          - name: currency
+            description: "ISO currency code; this fixture supports SGD only."
+          - name: cap_cents
+            description: "Maximum approved amount in cents."
+          - name: approved_by
+            description: "Approver's user ID."
+models:
+  - name: stg_ledger
+    description: "One general-ledger AP settlement posting per row. Excludes: Cash receipts, journal reversals, and non-SGD postings."
+    columns:
+      - name: id
+        description: "Unique row identifier within this source feed."
+        tests:
+          - not_null
+          - unique
+      - name: reference
+        description: "Payment reference used for exact reconciliation; may be absent from other feeds."
+      - name: posted_on
+        description: "Date recorded by this source, without an intra-day time."
+        tests:
+          - not_null
+      - name: posted_at
+        description: "Timezone-aware posting instant; generated fixture uses Asia/Singapore time."
+        tests:
+          - not_null
+      - name: counterparty
+        description: "Source spelling of the vendor or payment counterparty."
+      - name: currency
+        description: "ISO currency code; this fixture supports SGD only."
+        tests:
+          - not_null
+      - name: amount_cents
+        description: "Signed integer amount in the currency's minor units."
+        tests:
+          - not_null
+      - name: account
+        description: "GL account code; usually AP-SETTLEMENT with one SUSPENSE anomaly."
+      - name: contra_account
+        description: "Counter-account; paired with account for journal anomaly features."
+      - name: created_by
+        description: "User who recorded the posting."
+      - name: approved_by
+        description: "User who approved the posting."
+      - name: source_file
+        description: "Absolute path of the ingested CSV."
+        tests:
+          - not_null
+      - name: source_row
+        description: "One-based CSV line number, including the header at line 1."
+        tests:
+          - not_null
+      - name: source_hash
+        description: "SHA-256 of the full CSV bytes at ingestion."
+        tests:
+          - not_null
+      - name: loaded_at
+        description: "Timezone-aware UTC ingestion timestamp."
+        tests:
+          - not_null
+  - name: stg_bank
+    description: "One bank statement movement per row; a payment can have multiple rows. Excludes: Intraday balances and bank fees in separate statement lines."
+    columns:
+      - name: id
+        description: "Unique row identifier within this source feed."
+        tests:
+          - not_null
+          - unique
+      - name: reference
+        description: "Payment reference used for exact reconciliation; may be absent from other feeds."
+      - name: posted_on
+        description: "Date recorded by this source, without an intra-day time."
+        tests:
+          - not_null
+      - name: counterparty
+        description: "Source spelling of the vendor or payment counterparty."
+      - name: currency
+        description: "ISO currency code; this fixture supports SGD only."
+        tests:
+          - not_null
+      - name: amount_cents
+        description: "Signed integer amount in the currency's minor units."
+        tests:
+          - not_null
+      - name: source_file
+        description: "Absolute path of the ingested CSV."
+        tests:
+          - not_null
+      - name: source_row
+        description: "One-based CSV line number, including the header at line 1."
+        tests:
+          - not_null
+      - name: source_hash
+        description: "SHA-256 of the full CSV bytes at ingestion."
+        tests:
+          - not_null
+      - name: loaded_at
+        description: "Timezone-aware UTC ingestion timestamp."
+        tests:
+          - not_null
+  - name: stg_processor
+    description: "One processor settlement record per row. Excludes: Chargebacks and reserve holds."
+    columns:
+      - name: id
+        description: "Unique row identifier within this source feed."
+        tests:
+          - not_null
+          - unique
+      - name: reference
+        description: "Payment reference used for exact reconciliation; may be absent from other feeds."
+      - name: settled_on
+        description: "Processor settlement date."
+        tests:
+          - not_null
+      - name: currency
+        description: "ISO currency code; this fixture supports SGD only."
+        tests:
+          - not_null
+      - name: gross_cents
+        description: "Gross settlement before processor fee."
+        tests:
+          - not_null
+      - name: fee_cents
+        description: "Processor fee; nonnegative integer cents."
+        tests:
+          - not_null
+      - name: net_cents
+        description: "Gross less fee; nonnegative integer cents."
+        tests:
+          - not_null
+      - name: source_file
+        description: "Absolute path of the ingested CSV."
+        tests:
+          - not_null
+      - name: source_row
+        description: "One-based CSV line number, including the header at line 1."
+        tests:
+          - not_null
+      - name: source_hash
+        description: "SHA-256 of the full CSV bytes at ingestion."
+        tests:
+          - not_null
+      - name: loaded_at
+        description: "Timezone-aware UTC ingestion timestamp."
+        tests:
+          - not_null
+  - name: stg_exchange
+    description: "One synthetic exchange transfer per row. Excludes: Market prices, network confirmations, and on-chain verification."
+    columns:
+      - name: id
+        description: "Unique row identifier within this source feed."
+        tests:
+          - not_null
+          - unique
+      - name: tx_hash
+        description: "Synthetic transaction hash; not verified on-chain."
+      - name: posted_on
+        description: "Date recorded by this source, without an intra-day time."
+        tests:
+          - not_null
+      - name: direction
+        description: "Transfer direction relative to the exchange account."
+      - name: currency
+        description: "ISO currency code; this fixture supports SGD only."
+        tests:
+          - not_null
+      - name: amount_cents
+        description: "Signed integer amount in the currency's minor units."
+        tests:
+          - not_null
+      - name: source_file
+        description: "Absolute path of the ingested CSV."
+        tests:
+          - not_null
+      - name: source_row
+        description: "One-based CSV line number, including the header at line 1."
+        tests:
+          - not_null
+      - name: source_hash
+        description: "SHA-256 of the full CSV bytes at ingestion."
+        tests:
+          - not_null
+      - name: loaded_at
+        description: "Timezone-aware UTC ingestion timestamp."
+        tests:
+          - not_null
+  - name: stg_invoices
+    description: "One accounts-payable invoice per row. Excludes: Credit notes, partial invoices, and tax line items."
+    columns:
+      - name: id
+        description: "Unique row identifier within this source feed."
+        tests:
+          - not_null
+          - unique
+      - name: po_id
+        description: "Referenced purchase-order ID."
+      - name: vendor
+        description: "Vendor name recorded on the invoice."
+      - name: invoice_on
+        description: "Invoice issue date."
+        tests:
+          - not_null
+      - name: currency
+        description: "ISO currency code; this fixture supports SGD only."
+        tests:
+          - not_null
+      - name: amount_cents
+        description: "Signed integer amount in the currency's minor units."
+        tests:
+          - not_null
+      - name: created_by
+        description: "User who entered the invoice."
+      - name: source_file
+        description: "Absolute path of the ingested CSV."
+        tests:
+          - not_null
+      - name: source_row
+        description: "One-based CSV line number, including the header at line 1."
+        tests:
+          - not_null
+      - name: source_hash
+        description: "SHA-256 of the full CSV bytes at ingestion."
+        tests:
+          - not_null
+      - name: loaded_at
+        description: "Timezone-aware UTC ingestion timestamp."
+        tests:
+          - not_null
+  - name: stg_purchase_orders
+    description: "One approved purchase order per row. Excludes: PO amendments, line-level budgets, and approval history."
+    columns:
+      - name: id
+        description: "Unique row identifier within this source feed."
+        tests:
+          - not_null
+          - unique
+      - name: vendor
+        description: "Vendor named on the order."
+      - name: approved_on
+        description: "Date the order was approved."
+        tests:
+          - not_null
+      - name: currency
+        description: "ISO currency code; this fixture supports SGD only."
+        tests:
+          - not_null
+      - name: cap_cents
+        description: "Maximum approved amount in cents."
+        tests:
+          - not_null
+      - name: approved_by
+        description: "Approver's user ID."
+      - name: source_file
+        description: "Absolute path of the ingested CSV."
+        tests:
+          - not_null
+      - name: source_row
+        description: "One-based CSV line number, including the header at line 1."
+        tests:
+          - not_null
+      - name: source_hash
+        description: "SHA-256 of the full CSV bytes at ingestion."
+        tests:
+          - not_null
+      - name: loaded_at
+        description: "Timezone-aware UTC ingestion timestamp."
+        tests:
+          - not_null
+  - name: fct_reconciliation
+    description: "One classified ledger/bank reference figure; excludes document and audit findings."
+    columns:
+      - name: figure_id
+        description: "Stable reference-derived figure ID for source tracing."
+        tests:
+          - not_null
+          - unique
+      - name: reference
+        description: "Payment reference used for exact reconciliation; may be absent from other feeds."
+      - name: status
+        description: "Deterministic reconciliation category."
+      - name: difference_cents
+        description: "Ledger cents minus bank cents; SGD in this fixture."
+      - name: explanation
+        description: "Rule-generated reason for the category."
+      - name: ledger_ids
+        description: "JSON array of source ledger IDs."
+      - name: bank_ids
+        description: "JSON array of source bank IDs."
+      - name: recorded_at
+        description: "Timezone-aware figure creation timestamp."
+  - name: fct_audit_findings
+    description: "One review candidate from a rule-based audit screen; excludes contract findings."
+    columns:
+      - name: figure_id
+        description: "Stable audit finding ID for source tracing."
+        tests:
+          - not_null
+          - unique
+      - name: kind
+        description: "Audit screen category, not a fraud verdict."
+      - name: explanation
+        description: "Rule-generated reason for review."
+      - name: amount_cents
+        description: "Absolute reviewed amount in SGD cents."
+      - name: ledger_ids
+        description: "JSON array of source ledger IDs."
+      - name: recorded_at
+        description: "Timezone-aware finding creation timestamp."

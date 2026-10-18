@@ -8,4 +8,5 @@ reports/
 target/
 logs/
 dbt_packages/
+dbt/.user.yml
 ops/*.plist

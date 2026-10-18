@@ -1,0 +1,31 @@
+{
+  "date_sgt": "2026-10-18",
+  "scope": "local dbt CLI build and data tests against a disposable copy of the existing synthetic DuckDB warehouse",
+  "dbt_core_version": "1.12.6",
+  "dbt_duckdb_version": "1.9.6",
+  "duckdb_version": "1.4.1",
+  "model_count": 8,
+  "data_test_count": 61,
+  "build_nodes_passed": 69,
+  "warnings": 0,
+  "errors": 0,
+  "row_counts": {
+    "stg_bank": 128,
+    "stg_exchange": 6,
+    "stg_invoices": 50,
+    "stg_ledger": 120,
+    "stg_processor": 40,
+    "stg_purchase_orders": 50,
+    "fct_reconciliation": 123,
+    "fct_audit_findings": 6
+  },
+  "staging_rows_total": 394,
+  "mart_rows_total": 129,
+  "direct_sql_verifier_parity": true,
+  "source_data": "seeded local synthetic fixture",
+  "limitations": [
+    "One local dbt run does not verify a live schedule or production feed.",
+    "The copied warehouse was discarded after verification; the original database was not modified by dbt.",
+    "The generated fixture and reconciliation rules share assumptions."
+  ]
+}

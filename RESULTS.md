@@ -1,5 +1,7 @@
 # FinRecon measured results
 
+Historical commands below use the repository-local `.venv/bin/python` path for reproducibility. The original October 12–15 measurements used an equivalent Python 3.12 environment in a sibling local project; that path is not part of this standalone repository.
+
 ## Real dbt CLI build, 18 October 2026
 
 Installed dbt-core **1.12.6**, dbt-duckdb **1.9.6**, and DuckDB **1.4.1** in an isolated Python 3.12 environment. Copied the existing synthetic `data/finrecon.duckdb` to a disposable temporary file and pointed `FINRECON_DB_PATH` at that copy, so dbt did not modify the active warehouse. `dbt debug` confirmed the adapter connection. `dbt build --profiles-dir dbt --project-dir . --no-partial-parse --threads 1` then passed **69/69 nodes**: eight view models and 61 data tests, with zero warnings/errors. The direct SQL verifier's earlier **394 staging / 129 mart** row totals matched the eight dbt views: 128 bank, 6 exchange, 50 invoice, 120 ledger, 40 processor, 50 purchase-order, 123 reconciliation and 6 audit-finding rows. The compact record is [`evidence/dbt_cli_20261018.json`](evidence/dbt_cli_20261018.json).
@@ -8,7 +10,7 @@ This verifies one local adapter build against saved synthetic feeds. It does not
 
 ## M1–M2 local run, 12 October 2026
 
-`../p05_fabsense/.venv/bin/python pipeline.py all` completed on the seeded 120-ledger-transaction synthetic fixture. The generator wrote **120 ledger, 128 bank, 40 processor, 6 exchange, 50 invoice, and 50 purchase-order rows**. DuckDB's raw and typed staging counts matched each feed without dropping rows. Ten reconciliation figure IDs were traced back to exact source rows; the first ten figures referenced **16** source rows. The precise counts and file hashes are in `reports/reconciliation_summary.json` and the DuckDB load manifest.
+`.venv/bin/python pipeline.py all` completed on the seeded 120-ledger-transaction synthetic fixture. The generator wrote **120 ledger, 128 bank, 40 processor, 6 exchange, 50 invoice, and 50 purchase-order rows**. DuckDB's raw and typed staging counts matched each feed without dropping rows. Ten reconciliation figure IDs were traced back to exact source rows; the first ten figures referenced **16** source rows. The precise counts and file hashes are in `reports/reconciliation_summary.json` and the DuckDB load manifest.
 
 The ledger/bank result had **123 reference-level classifications**: 91 matched, 5 missing in bank, 3 missing in ledger, 5 timing differences, 6 fee/FX differences, 7 many-to-one settlements, 3 duplicates, and 3 unexplained amount differences. It agreed with all 123 labels in the separate injected-issue manifest. Per-category precision and recall were 1.0 on this development fixture. These cases are produced by the same rules that the matcher encodes, so this is a consistency/coverage check and **not** a held-out estimate of reconciliation performance. Fuzzy counterparty suggestions remain review-only; no automatic fuzzy matches are counted.
 
@@ -22,7 +24,7 @@ The local run used P05's existing Python 3.12 virtual environment with DuckDB **
 
 `pipeline.py all` produced five review findings from four injected audit scenarios: one duplicate vendor payment, two near-threshold payments, one segregation-of-duties conflict and one split purchase. The second near-threshold hit, `GL-00074`, was **not injected** and is counted as a false positive. Against the separate injection manifest: **4 true positives, 1 false positive, 0 false negatives**; micro precision **4/5 = 0.80**, recall **4/4 = 1.00**. Near-threshold precision is 1/2; the other three screens each have 1/1 precision and recall on this development fixture. Every finding is stored with ledger IDs and traceable file/line/hash evidence. The descriptive Benford sample has **120 amounts** and chi-square **32.1892**; the generator draws bounded uniform amounts, so the statistic is not used to claim fraud. Weekend posting IDs are listed as context, not classified fraud.
 
-`../p05_fabsense/.venv/bin/python -m unittest discover -v` passed **13 tests**: three inherited prototype tests, two warehouse/pipeline tests, six quality mutation tests, and two audit tests. These tests verify exact source line numbers, invalid amount failure, lineage invalidation, all selected quality failures, injected audit hits, one measured false positive, repeatability, and finding traceability.
+`.venv/bin/python -m unittest discover -v` passed **13 tests**: three inherited prototype tests, two warehouse/pipeline tests, six quality mutation tests, and two audit tests. These tests verify exact source line numbers, invalid amount failure, lineage invalidation, all selected quality failures, injected audit hits, one measured false positive, repeatability, and finding traceability.
 
 ## M5 local dashboard and dictionary, 12 October 2026
 
@@ -36,7 +38,7 @@ The local generator wrote **50 synthetic agreements** with two text layouts. The
 
 The deterministic SQL copilot answered **25/25** fixed-grammar questions with SQL-checked facts and **25/25** correct citation sets on the local warehouse. It refused **4/4** adversarial/out-of-scope prompts, and the numeric guard rejected **4/4** proposed answers with unsupported numbers. These are local template tests; they do not measure general language understanding or LLM behavior. The full `make all` run now writes `reports/contract_report.json` and `reports/copilot_eval.json` alongside the existing reports.
 
-After M6/M7, `../p05_fabsense/.venv/bin/python -m unittest discover -q` passed **17 tests**. A fresh Streamlit AppTest render and trace click had **0 exceptions**, **3 metrics**, **3 data tables** and **1 trace panel**.
+After M6/M7, `.venv/bin/python -m unittest discover -q` passed **17 tests**. A fresh Streamlit AppTest render and trace click had **0 exceptions**, **3 metrics**, **3 data tables** and **1 trace panel**.
 
 ## Hand-authored edges, weekly runner and dbt SQL, 13 October 2026
 
@@ -56,6 +58,6 @@ The dbt-compatible SQL verifier still matched **394 staging rows**, and now matc
 
 ## Final local fixture and pipeline verification, 15 October 2026
 
-`../p05_fabsense/.venv/bin/python -m eval.independent_audit_cases` completed the 24-row hand-authored fixture: the deterministic after-hours rule found `L-20` (07:59) and `L-21` (18:00), while `L-22` (08:00) and `L-23` (17:59) remained in hours. Against the two authored labels, the rule had **2 TP, 0 FP, 0 FN**. The optional IsolationForest had **2 TP, 1 FP, 0 FN**, falsely flagging `L-23`; its precision was 2/3 and recall 2/2 on these 24 rows. All five findings traced to five source rows. These are small designed boundary cases, not independent field labels.
+`.venv/bin/python -m eval.independent_audit_cases` completed the 24-row hand-authored fixture: the deterministic after-hours rule found `L-20` (07:59) and `L-21` (18:00), while `L-22` (08:00) and `L-23` (17:59) remained in hours. Against the two authored labels, the rule had **2 TP, 0 FP, 0 FN**. The optional IsolationForest had **2 TP, 1 FP, 0 FN**, falsely flagging `L-23`; its precision was 2/3 and recall 2/2 on these 24 rows. All five findings traced to five source rows. These are small designed boundary cases, not independent field labels.
 
-`../p05_fabsense/.venv/bin/python -m unittest discover -v` passed **26 tests in 2.808 seconds** with no failures or errors. `../p05_fabsense/.venv/bin/python pipeline.py all` exited zero and reported **123/123** seeded reconciliation classifications. The current integrated reports record **74/74** quality checks, seeded audit **5 TP/1 FP/0 FN**, seeded anomaly **3 TP/3 FP/0 FN**, **15/15** reconciliation edge labels, and DuckDB SQL parity over **394 staging/129 mart rows**. This run did not execute dbt CLI, a live scheduler, external LLM, SEC XBRL, CUAD or production data feeds.
+`.venv/bin/python -m unittest discover -v` passed **26 tests in 2.808 seconds** with no failures or errors. `.venv/bin/python pipeline.py all` exited zero and reported **123/123** seeded reconciliation classifications. The current integrated reports record **74/74** quality checks, seeded audit **5 TP/1 FP/0 FN**, seeded anomaly **3 TP/3 FP/0 FN**, **15/15** reconciliation edge labels, and DuckDB SQL parity over **394 staging/129 mart rows**. This run did not execute dbt CLI, a live scheduler, external LLM, SEC XBRL, CUAD or production data feeds.

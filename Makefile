@@ -1,6 +1,6 @@
 PYTHON ?= python3
 
-.PHONY: all test trace quality docs dashboard copilot-eval edge-eval audit-edge-eval verify-dbt weekly-check launchd-template
+.PHONY: all test trace quality docs dashboard dashboard-reviewer export-summary browser-walkthrough tableau-extract copilot-eval edge-eval audit-edge-eval verify-dbt weekly-check launchd-template
 
 all:
 	$(PYTHON) pipeline.py all
@@ -19,6 +19,18 @@ docs:
 
 dashboard:
 	$(PYTHON) -m streamlit run dashboard.py
+
+dashboard-reviewer:
+	FINRECON_ROLE=reviewer $(PYTHON) -m streamlit run dashboard.py
+
+export-summary:
+	$(PYTHON) pipeline.py export-summary --out data/summary_export
+
+browser-walkthrough:
+	$(PYTHON) -m eval.browser_walkthrough
+
+tableau-extract:
+	$(PYTHON) tableau_export.py --audience summary
 
 copilot-eval:
 	$(PYTHON) -m eval.copilot_eval

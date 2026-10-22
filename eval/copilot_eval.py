@@ -104,15 +104,26 @@ def run(db: duckdb.DuckDBPyConnection, data_dir: Path, report_dir: Path) -> dict
 
 if __name__ == "__main__":
     import argparse
-    from warehouse import connect
+    from batches import cli_paths, resolve_published
     parser = argparse.ArgumentParser()
-    parser.add_argument("--warehouse", type=Path, default=Path("data/finrecon.duckdb"))
-    parser.add_argument("--data-dir", type=Path, default=Path("data/generated"))
-    parser.add_argument("--reports", type=Path, default=Path("reports"))
+    parser.add_argument("--warehouse", type=Path, help="Default: published batch")
+    parser.add_argument("--data-dir", type=Path, help="Default: published batch")
+    parser.add_argument("--quality-reports", type=Path,
+                        help="Folder with quality_report.json; default: published batch reports")
+    parser.add_argument("--reports", type=Path, default=Path("reports"),
+                        help="Where to write copilot_eval.json")
     args = parser.parse_args()
-    database = connect(args.warehouse)
     try:
-        result = run(database, args.data_dir, args.reports)
+        explicit = args.warehouse is not None
+        args.warehouse, args.data_dir = cli_paths(args.warehouse, args.data_dir)
+        quality_dir = args.quality_reports or (args.reports if explicit
+                                               else resolve_published().reports)
+    except (FileNotFoundError, ValueError) as exc:
+        raise SystemExit(str(exc)) from None
+    args.reports.mkdir(parents=True, exist_ok=True)
+    database = duckdb.connect(str(args.warehouse), read_only=True)
+    try:
+        result = run(database, args.data_dir, quality_dir)
         (args.reports / "copilot_eval.json").write_text(
             json.dumps(result, indent=2) + "\n", encoding="utf-8")
         print(json.dumps({key: value for key, value in result.items() if key != "cases"},

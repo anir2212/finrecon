@@ -115,13 +115,17 @@ def respond(question: str, db: duckdb.DuckDBPyConnection, data_dir: Path) -> dic
 
 if __name__ == "__main__":
     import argparse
-    from warehouse import connect
+    from batches import cli_paths
     parser = argparse.ArgumentParser()
     parser.add_argument("question")
-    parser.add_argument("--warehouse", type=Path, default=Path("data/finrecon.duckdb"))
-    parser.add_argument("--data-dir", type=Path, default=Path("data/generated"))
+    parser.add_argument("--warehouse", type=Path, help="Default: published batch")
+    parser.add_argument("--data-dir", type=Path, help="Default: published batch")
     args = parser.parse_args()
-    database = connect(args.warehouse)
+    try:
+        args.warehouse, args.data_dir = cli_paths(args.warehouse, args.data_dir)
+    except (FileNotFoundError, ValueError) as exc:
+        raise SystemExit(str(exc)) from None
+    database = duckdb.connect(str(args.warehouse), read_only=True)
     try:
         print(json.dumps(respond(args.question, database, args.data_dir), indent=2))
     finally:

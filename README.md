@@ -6,9 +6,15 @@ The pipeline is small enough to run on a laptop. It includes a read-only Streaml
 
 ## A screen for analysts
 
-The existing Streamlit screen shows reconciliation status, break ages, quality failures, audit findings, optional anomaly candidates, and a figure-ID source trace. A local automated render and trace click completed without app exceptions. It is a development review screen, not a deployed user product: browser usability and access controls have not been verified. Its break age currently uses today's date, so older synthetic fixture transactions can appear misleadingly old.
+Each run now builds a self-contained **batch** with its own warehouse, reports and a BI-ready snapshot. The batch is published only after its manifests, source hashes, figure links and snapshot totals all check out. A failed run is marked `failed`, and the previously published batch stays current. The Streamlit review screen opens on the published batch and its as-of date. Its four tabs cover reconciliation status, break ages, quality results, audit findings and a figure-ID source trace, and it can re-verify the cited source rows against their hashes.
 
-The next milestone is a **planned Power BI-ready analyst dashboard**. It starts with a published batch ID and an explicit as-of date so the warehouse, quality reports and dashboard cannot silently mix runs. A read-only reporting model would hold one row per reconciliation figure, separate audit and quality facts, date/status dimensions, and a source-evidence bridge keyed by figure ID, file, row and hash. A nonempty export/import must match DuckDB row counts and integer-cent totals; only the presentation layer formats cents as SGD. An analyst should be able to filter aged breaks, inspect control failures, and drill through to source evidence, with visible refresh status and permission boundaries. Power BI itself has **not** been built or tested.
+Two roles control what the screen shows:
+- `summary` shows figures, controls and findings, but no source files, rows or hashes.
+- `reviewer` adds the drill-through to source rows.
+
+Locally the role comes from `FINRECON_ROLE` and defaults to `summary`. Behind a proxy, a role header is accepted only together with a shared token, compared in constant time. `pipeline.py export-summary` writes a copy of the snapshot without the source bridge.
+
+A headless-Chrome walkthrough (`make browser-walkthrough`) passed 30/30 checks on 20 October, covering both roles, a refused unknown role, and a stale-source failure. The tab layout cut the keyboard path to the verify button from 76 to 29 Tab presses. Power BI Desktop does not run on macOS, so the BI path uses Tableau instead. `make tableau-extract` writes a Tableau Hyper extract of the snapshot, and its row counts and cent totals matched the snapshot. No Tableau workbook has been built yet, and no identity provider or deployed proxy is involved. Exact figures are in [RESULTS.md](RESULTS.md).
 
 ## Run it
 
@@ -21,7 +27,7 @@ make all PYTHON=.venv/bin/python
 make test PYTHON=.venv/bin/python
 ```
 
-`make all` generates the fixture feeds and a DuckDB warehouse under `data/`, then writes local reports under `reports/`. Both directories contain generated data and are ignored by Git. To inspect a figure and its underlying rows, run:
+`make all` builds a batch under `data/batches/<batch ID>/` (feeds, a fresh DuckDB warehouse, reports and the BI snapshot), validates it and then publishes it in `data/batches/published.json`. Generated data is ignored by Git. `make dashboard` opens the screen as `summary`; `make dashboard-reviewer` opens it as `reviewer`. The optional browser walkthrough and Tableau extract need `requirements-browser.txt` (plus an installed Google Chrome) and `requirements-tableau.txt`. To inspect a figure and its underlying rows, run:
 
 ```sh
 .venv/bin/python pipeline.py trace --figure-id REC-PAY-00001
@@ -37,11 +43,12 @@ To repeat the check after `make all`, keep dbt's writes away from the working wa
 
 ```sh
 .venv/bin/python -m pip install -r requirements-dbt.txt
-cp data/finrecon.duckdb /tmp/finrecon-dbt-check.duckdb
+.venv/bin/python pipeline.py published   # prints the published batch's warehouse path
+cp data/batches/<batch ID>/finrecon.duckdb /tmp/finrecon-dbt-check.duckdb
 FINRECON_DB_PATH=/tmp/finrecon-dbt-check.duckdb .venv/bin/dbt build --profiles-dir dbt --project-dir . --no-partial-parse --threads 1
 ```
 
-Run these commands from the repository root. The absolute `FINRECON_DB_PATH` selects the copied database. The default profile path targets the local working warehouse.
+Run these commands from the repository root. The absolute `FINRECON_DB_PATH` selects the copied database; the profile's default relative path points at the legacy `data/finrecon.duckdb`, so always pass it. On 20 October the same build passed 69/69 nodes on a copy of a published batch's warehouse.
 
 ## Repository map
 
@@ -52,7 +59,8 @@ Run these commands from the repository root. The absolute `FINRECON_DB_PATH` sel
 | `audit_analytics.py`, `anomaly_detection.py` | Produce review candidates with row evidence |
 | `contracts.py`, `copilot.py` | Trace contract terms and answer a fixed set of finance questions |
 | `models/`, `dbt/` | DuckDB staging and mart views, profile, and data tests |
-| `pipeline.py`, `dashboard.py` | Run the pipeline and review persisted results |
+| `pipeline.py`, `batches.py`, `dashboard.py` | Run the pipeline, publish validated batches and review the published one |
+| `access.py`, `reporting.py`, `tableau_export.py` | Roles, the BI snapshot, and the Tableau Hyper extract |
 | `eval/`, `test_*.py` | Designed boundary fixtures and local tests |
 
 ## What the results mean

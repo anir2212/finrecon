@@ -1,0 +1,167 @@
+{
+  "what": "Tableau Hyper extracts of the published local batch, reopened and checked against the snapshot manifest",
+  "generated_on": "2026-10-20",
+  "tool": "tableauhyperapi 0.0.26479 (Telemetry.DO_NOT_SEND_USAGE_DATA_TO_TABLEAU)",
+  "note": "Batch built in P10's own environment without scikit-learn, so the optional anomaly screen is unavailable and fct_finding has 8 rule/contract rows. No Tableau workbook was built or rendered; Tableau is not installed on this machine.",
+  "extracts": {
+    "summary": {
+      "batch_id": "B20261020-081414-087737",
+      "audience": "summary",
+      "created_at": "2026-10-20T10:26:48+00:00",
+      "hyper_file": "finrecon_summary.hyper",
+      "hyper_sha256": "9fa8caefbe1042f8ef27307f959cdcf70b218937c8a7258e17d750e805ad8e1e",
+      "source_snapshot_manifest_sha256": "1bbc580055d6b732ced1eeb241b73264ee1ab1dd21df0840e25a07985f8ea62b",
+      "schema": "Extract",
+      "tables": {
+        "dim_batch": {
+          "rows": 1
+        },
+        "dim_date": {
+          "rows": 30
+        },
+        "dim_status": {
+          "rows": 8
+        },
+        "dim_finding_type": {
+          "rows": 7
+        },
+        "fct_reconciliation": {
+          "rows": 123,
+          "cents": {
+            "ledger_cents": -8227368,
+            "bank_cents": -8068978,
+            "difference_cents": -158390
+          },
+          "figure_keys_match": true
+        },
+        "fct_finding": {
+          "rows": 8,
+          "cents": {
+            "amount_cents": 578268
+          },
+          "figure_keys_match": true
+        },
+        "fct_quality": {
+          "rows": 74
+        }
+      },
+      "excluded_tables": [
+        "bridge_figure_source"
+      ],
+      "relationships": [
+        [
+          "dim_status.status_key",
+          "fct_reconciliation.status_key"
+        ],
+        [
+          "dim_date.date_key",
+          "fct_reconciliation.date_key"
+        ],
+        [
+          "dim_date.date_key",
+          "fct_finding.date_key"
+        ],
+        [
+          "dim_finding_type.finding_type_key",
+          "fct_finding.finding_type_key"
+        ],
+        [
+          "dim_batch.batch_id",
+          "fct_reconciliation.batch_id"
+        ],
+        [
+          "dim_batch.batch_id",
+          "fct_finding.batch_id"
+        ],
+        [
+          "dim_batch.batch_id",
+          "fct_quality.batch_id"
+        ]
+      ],
+      "money": "integer SGD cents; divide by 100 only in a Tableau calculated field",
+      "workbook": "not built; open the .hyper in Tableau and draw the listed relationships"
+    },
+    "reviewer": {
+      "batch_id": "B20261020-081414-087737",
+      "audience": "reviewer",
+      "created_at": "2026-10-20T10:26:48+00:00",
+      "hyper_file": "finrecon_reviewer.hyper",
+      "hyper_sha256": "ea256ddf8676c858f1061f7cf7f58ba6c5158b8e4fda04c07818cf5daa6df44c",
+      "source_snapshot_manifest_sha256": "1bbc580055d6b732ced1eeb241b73264ee1ab1dd21df0840e25a07985f8ea62b",
+      "schema": "Extract",
+      "tables": {
+        "dim_batch": {
+          "rows": 1
+        },
+        "dim_date": {
+          "rows": 30
+        },
+        "dim_status": {
+          "rows": 8
+        },
+        "dim_finding_type": {
+          "rows": 7
+        },
+        "fct_reconciliation": {
+          "rows": 123,
+          "cents": {
+            "ledger_cents": -8227368,
+            "bank_cents": -8068978,
+            "difference_cents": -158390
+          },
+          "figure_keys_match": true
+        },
+        "fct_finding": {
+          "rows": 8,
+          "cents": {
+            "amount_cents": 578268
+          },
+          "figure_keys_match": true
+        },
+        "fct_quality": {
+          "rows": 74
+        },
+        "bridge_figure_source": {
+          "rows": 258
+        }
+      },
+      "excluded_tables": [],
+      "relationships": [
+        [
+          "dim_status.status_key",
+          "fct_reconciliation.status_key"
+        ],
+        [
+          "dim_date.date_key",
+          "fct_reconciliation.date_key"
+        ],
+        [
+          "dim_date.date_key",
+          "fct_finding.date_key"
+        ],
+        [
+          "dim_finding_type.finding_type_key",
+          "fct_finding.finding_type_key"
+        ],
+        [
+          "dim_batch.batch_id",
+          "fct_reconciliation.batch_id"
+        ],
+        [
+          "dim_batch.batch_id",
+          "fct_finding.batch_id"
+        ],
+        [
+          "dim_batch.batch_id",
+          "fct_quality.batch_id"
+        ],
+        [
+          "fct_reconciliation.figure_id",
+          "bridge_figure_source.figure_id"
+        ]
+      ],
+      "money": "integer SGD cents; divide by 100 only in a Tableau calculated field",
+      "workbook": "not built; open the .hyper in Tableau and draw the listed relationships"
+    }
+  }
+}

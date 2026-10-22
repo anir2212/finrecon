@@ -76,8 +76,10 @@ def verify(db: duckdb.DuckDBPyConnection, root: Path) -> dict:
 
 
 if __name__ == "__main__":
-    from warehouse import connect
-    db = connect(Path("data/finrecon.duckdb"))
+    import duckdb
+    from batches import resolve_published
+    # Temporary views only; the published batch warehouse is opened read-only.
+    db = duckdb.connect(str(resolve_published().warehouse), read_only=True)
     try:
         report = verify(db, Path(__file__).resolve().parent)
         Path("reports").mkdir(exist_ok=True)

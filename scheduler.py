@@ -16,8 +16,10 @@ from datetime import datetime, timedelta
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
+import duckdb
+
+from batches import resolve_published
 from quality_checks import run_checks
-from warehouse import connect
 
 
 ZONE = ZoneInfo("Asia/Singapore")
@@ -46,9 +48,14 @@ def _atomic_json(path: Path, value: dict) -> None:
     os.replace(temporary, path)
 
 
-def run_if_due(warehouse_path: Path, data_dir: Path, report_dir: Path, *,
-               now: datetime | None = None, force: bool = False) -> dict:
-    """Run one weekly quality attempt; persist a report even on input failure."""
+def run_if_due(warehouse_path: Path | None, data_dir: Path | None, report_dir: Path, *,
+               now: datetime | None = None, force: bool = False,
+               batch_root: Path | None = None) -> dict:
+    """Run one weekly quality attempt; persist a report even on input failure.
+
+    With no explicit warehouse and data directory, the attempt checks the
+    published batch (``batches.py``) and records its batch ID.
+    """
     now = now or datetime.now(ZONE)
     if now.tzinfo is None or now.utcoffset() is None:
         raise ValueError("now must include a timezone")
@@ -67,16 +74,24 @@ def run_if_due(warehouse_path: Path, data_dir: Path, report_dir: Path, *,
                     "reason": "not due or already attempted this week"}
         output = report_dir / f"weekly_quality_{week}.json"
         try:
+            batch_id = None
+            if warehouse_path is None and data_dir is None:
+                published = resolve_published(batch_root)
+                warehouse_path, data_dir = published.warehouse, published.data_dir
+                batch_id = published.batch_id
+            if warehouse_path is None or data_dir is None:
+                raise ValueError("pass both warehouse and data directory, or neither")
             if not Path(warehouse_path).is_file():
                 raise FileNotFoundError(f"missing warehouse: {warehouse_path}")
-            db = connect(warehouse_path)
+            db = duckdb.connect(str(warehouse_path), read_only=True)
             try:
                 quality = run_checks(db, data_dir, as_of=now)
             finally:
                 db.close()
             status = quality["status"]
             report = {"status": status, "attempted_at": local.isoformat(),
-                      "week_start": week, "quality": quality}
+                      "week_start": week, "batch_id": batch_id,
+                      "warehouse": str(warehouse_path), "quality": quality}
         except Exception as exc:
             status = "error"
             report = {"status": status, "attempted_at": local.isoformat(),
@@ -102,8 +117,6 @@ def render_launchd(root: Path, python: Path) -> bytes:
     return plistlib.dumps({
         "Label": LABEL,
         "ProgramArguments": [str(python), str(root / "scheduler.py"), "run-if-due",
-                             "--warehouse", str(root / "data/finrecon.duckdb"),
-                             "--data-dir", str(root / "data/generated"),
                              "--reports", str(report_dir)],
         "WorkingDirectory": str(root),
         "StartCalendarInterval": {"Weekday": 1, "Hour": 9, "Minute": 0},
@@ -116,8 +129,8 @@ def render_launchd(root: Path, python: Path) -> bytes:
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("command", choices=["run-if-due", "render-launchd"])
-    parser.add_argument("--warehouse", type=Path, default=Path("data/finrecon.duckdb"))
-    parser.add_argument("--data-dir", type=Path, default=Path("data/generated"))
+    parser.add_argument("--warehouse", type=Path, help="Default: published batch")
+    parser.add_argument("--data-dir", type=Path, help="Default: published batch")
     parser.add_argument("--reports", type=Path, default=Path("reports"))
     parser.add_argument("--force", action="store_true")
     parser.add_argument("--root", type=Path, default=Path(__file__).resolve().parent)

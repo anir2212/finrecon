@@ -1,0 +1,175 @@
+{
+  "generated_at": "2026-10-20T10:34:37+00:00",
+  "what": "Headless Chrome walkthrough of dashboard.py on disposable synthetic batches",
+  "environment": {
+    "python": "3.12.13",
+    "platform": "macOS-15.3.1-arm64-arm-64bit",
+    "chrome": "155.0.8059.85",
+    "streamlit": "1.50.0",
+    "playwright": "1.64.0"
+  },
+  "passed": 30,
+  "total": 30,
+  "all_servers_stopped": true,
+  "checks": {
+    "journey.header_names_published_batch_and_role": true,
+    "journey.metrics_equal_snapshot": true,
+    "journey.mismatch_reference_matches_trace": true,
+    "journey.mismatch_date_matches_trace": true,
+    "journey.mismatch_amounts_match_trace": true,
+    "journey.drill_through_verifies_source_rows": true,
+    "journey.planted_finding_labelled_planted": true,
+    "journey.known_false_positive_labelled_not_planted": true,
+    "journey.keyboard_reaches_and_activates_verify": true,
+    "journey.keyboard_path_within_target": true,
+    "summary.role_shown": true,
+    "summary.metrics_visible": true,
+    "summary.no_verify_button": true,
+    "summary.no_fixture_label_toggle": true,
+    "summary.explains_missing_source_access": true,
+    "denied.access_denied_shown": true,
+    "denied.no_metrics": true,
+    "denied.no_batch_header": true,
+    "proxy.missing_headers_denied_although_local_role_set": true,
+    "proxy.role_without_token_denied": true,
+    "proxy.wrong_token_denied": true,
+    "proxy.token_summary_admitted_without_drill_through": true,
+    "proxy.token_reviewer_admitted_with_drill_through": true,
+    "failed.still_shows_previous_batch": true,
+    "failed.refresh_status_failed": true,
+    "failed.failed_refresh_warning": true,
+    "failed.stale_warning": true,
+    "failed.metrics_still_visible": true,
+    "empty.no_published_batch_error": true,
+    "empty.no_metrics": true
+  },
+  "details": {
+    "reviewer": {
+      "checks": {
+        "header_names_published_batch_and_role": true,
+        "metrics_equal_snapshot": true,
+        "mismatch_reference_matches_trace": true,
+        "mismatch_date_matches_trace": true,
+        "mismatch_amounts_match_trace": true,
+        "drill_through_verifies_source_rows": true,
+        "planted_finding_labelled_planted": true,
+        "known_false_positive_labelled_not_planted": true,
+        "keyboard_reaches_and_activates_verify": true,
+        "keyboard_path_within_target": true
+      },
+      "metrics_shown": {
+        "Figures in batch": "123",
+        "Matched": "91",
+        "Breaks shown": "32",
+        "Quality checks failed": "0",
+        "Findings shown": "14"
+      },
+      "metrics_expected": {
+        "Figures in batch": "123",
+        "Matched": "91",
+        "Breaks shown": "32",
+        "Quality checks failed": "0",
+        "Findings shown": "14"
+      },
+      "mismatch": {
+        "figure_id": "REC-PAY-00019",
+        "screen_line": "Selected REC-PAY-00019 \u00b7 status fee_fx_difference \u00b7 posted 2026-09-20 \u00b7 reference PAY-00019 \u00b7 ledger -SGD 559.93 \u00b7 bank -SGD 560.68 \u00b7 difference SGD 0.75",
+        "trace": {
+          "reference": "PAY-00019",
+          "posted_on": "2026-09-20",
+          "ledger": "-SGD 559.93",
+          "bank": "-SGD 560.68",
+          "difference": "SGD 0.75",
+          "source_ids": [
+            "BK-00019",
+            "GL-00019"
+          ]
+        }
+      },
+      "labels_seen": {
+        "AUD-after_hours-GL-00046": "planted",
+        "AUD-near_threshold-GL-00074": "not planted"
+      },
+      "keys_to_verify": 29,
+      "keyboard_target": 38,
+      "key_sequence": "25 Tab, 3 ArrowRight, 1 Enter",
+      "server_stopped": true
+    },
+    "access": {
+      "summary": {
+        "role_shown": true,
+        "metrics_visible": true,
+        "no_verify_button": true,
+        "no_fixture_label_toggle": true,
+        "explains_missing_source_access": true
+      },
+      "denied": {
+        "access_denied_shown": true,
+        "no_metrics": true,
+        "no_batch_header": true
+      },
+      "servers_stopped": true
+    },
+    "proxy": {
+      "checks": {
+        "missing_headers_denied_although_local_role_set": true,
+        "role_without_token_denied": true,
+        "wrong_token_denied": true,
+        "token_summary_admitted_without_drill_through": true,
+        "token_reviewer_admitted_with_drill_through": true
+      },
+      "observed": {
+        "no_headers": {
+          "denied": true,
+          "role_line": null,
+          "verify_button": 0
+        },
+        "role_without_token": {
+          "denied": true,
+          "role_line": null,
+          "verify_button": 0
+        },
+        "wrong_token": {
+          "denied": true,
+          "role_line": null,
+          "verify_button": 0
+        },
+        "token_summary": {
+          "denied": false,
+          "role_line": "summary (walkthrough-user)",
+          "verify_button": 0
+        },
+        "token_reviewer": {
+          "denied": false,
+          "role_line": "reviewer",
+          "verify_button": 1
+        }
+      },
+      "server_stopped": true
+    },
+    "failure": {
+      "failed_and_stale": {
+        "still_shows_previous_batch": true,
+        "refresh_status_failed": true,
+        "failed_refresh_warning": true,
+        "stale_warning": true,
+        "metrics_still_visible": true
+      },
+      "empty_root": {
+        "no_published_batch_error": true,
+        "no_metrics": true
+      },
+      "servers_stopped": true
+    }
+  },
+  "screenshots": [
+    "evidence/browser/reviewer.png",
+    "evidence/browser/summary.png",
+    "evidence/browser/failed_stale.png"
+  ],
+  "limits": [
+    "Synthetic fixture data; batch IDs refer to deleted temporary batches.",
+    "Local single-machine check, not an accessibility audit or load test.",
+    "Proxy mode is exercised with browser-set headers standing in for a reverse proxy; no real identity provider was used."
+  ]
+}

@@ -25,8 +25,16 @@ def connect(path: Path) -> duckdb.DuckDBPyConnection:
     db.execute("create schema if not exists audit")
     db.execute("""create table if not exists audit.load_manifest (
         source_name varchar, source_file varchar, sha256 varchar,
-        row_count integer, loaded_at timestamptz,
+        row_count integer, loaded_at timestamptz, batch_id varchar,
         primary key (source_name, source_file))""")
+    manifest_columns = {row[1] for row in db.execute(
+        "pragma table_info('audit.load_manifest')").fetchall()}
+    if "batch_id" not in manifest_columns:
+        db.execute("alter table audit.load_manifest add column batch_id varchar")
+    db.execute("""create table if not exists audit.batch_manifest (
+        batch_id varchar primary key, status varchar, started_at timestamptz,
+        completed_at timestamptz, as_of_date date, business_timezone varchar,
+        error varchar)""")
     db.execute("""create table if not exists audit.figure_sources (
         figure_id varchar, source_name varchar, source_file varchar,
         source_row integer, source_hash varchar,
@@ -59,8 +67,14 @@ def connect(path: Path) -> duckdb.DuckDBPyConnection:
     return db
 
 
-def ingest(db: duckdb.DuckDBPyConnection, directory: Path) -> dict[str, int]:
-    """Atomically replace each feed; never silently skip malformed or duplicate rows."""
+def ingest(db: duckdb.DuckDBPyConnection, directory: Path,
+           batch_id: str | None = None) -> dict[str, int]:
+    """Atomically replace each feed; never silently skip malformed or duplicate rows.
+
+    Each feed commits separately. Batch-level atomicity comes from building a
+    whole batch in its own directory and publishing it only after validation
+    (see ``batches.py``); ``batch_id`` labels the manifest rows of that batch.
+    """
     counts = {}
     for name, columns in HEADERS.items():
         path = (Path(directory) / f"{name}.csv").resolve()
@@ -93,14 +107,33 @@ def ingest(db: duckdb.DuckDBPyConnection, directory: Path) -> dict[str, int]:
                 ])
             db.execute("delete from audit.load_manifest where source_name = ? and source_file = ?",
                        [name, path_text])
-            db.execute("insert into audit.load_manifest values (?, ?, ?, ?, ?)",
-                       [name, path_text, digest, len(rows), now])
+            db.execute("""insert into audit.load_manifest (source_name, source_file,
+                sha256, row_count, loaded_at, batch_id) values (?, ?, ?, ?, ?, ?)""",
+                       [name, path_text, digest, len(rows), now, batch_id])
             db.execute("commit")
         except BaseException:
             db.execute("rollback")
             raise
         counts[name] = len(rows)
     return counts
+
+
+def record_batch(db: duckdb.DuckDBPyConnection, batch_id: str, status: str, *,
+                 started_at: datetime | None = None, completed_at: datetime | None = None,
+                 as_of_date=None, business_timezone: str | None = None,
+                 error: str | None = None) -> None:
+    """Insert or update this warehouse's batch row; unspecified fields are kept."""
+    if status not in {"staged", "complete", "failed"}:
+        raise ValueError(f"unknown batch status: {status}")
+    db.execute("""insert into audit.batch_manifest values (?, ?, ?, ?, ?, ?, ?)
+        on conflict (batch_id) do update set status = excluded.status,
+          started_at = coalesce(excluded.started_at, started_at),
+          completed_at = coalesce(excluded.completed_at, completed_at),
+          as_of_date = coalesce(excluded.as_of_date, as_of_date),
+          business_timezone = coalesce(excluded.business_timezone, business_timezone),
+          error = excluded.error""",
+               [batch_id, status, started_at, completed_at, as_of_date,
+                business_timezone, error])
 
 
 def stage_counts(db: duckdb.DuckDBPyConnection) -> dict[str, tuple[int, int]]:

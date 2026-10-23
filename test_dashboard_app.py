@@ -84,8 +84,27 @@ class DashboardAppTests(unittest.TestCase):
             self.assertTrue(any("role:** summary" in item.value for item in summary.markdown))
             self.assertEqual(len(summary.button), 0)
             self.assertEqual(len(summary.dataframe), len(reviewer.dataframe) - 1)
-            self.assertEqual(len(summary.checkbox), 0)
+            self.assertFalse(any("fixture labels" in box.label for box in summary.checkbox))
             self.assertTrue(any("does not include source" in item.value for item in summary.info))
+
+    def test_plain_tables_replace_canvas_grids_with_full_text_tables(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            pipeline.run_batch(root, keep=3)
+            app = self._app(root)
+            grids = len(app.dataframe)
+            self.assertEqual(len(app.table), 1)  # the aged-break overview is always plain
+            box = next(box for box in app.checkbox if box.label.startswith("Plain tables"))
+            box.check().run()
+            self.assertFalse(app.exception)
+            self.assertEqual(len(app.dataframe), 0)
+            self.assertEqual(len(app.table), 1 + grids)
+            breaks = app.table[1].value
+            published = resolve_published(root)
+            from reporting import read_snapshot_table
+            columns, rows = read_snapshot_table(published.snapshot, "fct_reconciliation")
+            expected = sum(bool(dict(zip(columns, row))["is_break"]) for row in rows)
+            self.assertEqual(len(breaks), expected)
 
     def test_unknown_role_is_denied_before_any_figure(self):
         with tempfile.TemporaryDirectory() as folder:

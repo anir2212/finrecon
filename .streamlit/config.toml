@@ -1,0 +1,17 @@
+# Read by `streamlit run` from the project root (Makefile targets and eval scripts).
+# Colours chosen after the 23 October axe-core scan; contrast ratios are against
+# Streamlit's light background.
+
+[client]
+# Hides the developer "Deploy" button and the unlabelled main-menu button.
+toolbarMode = "minimal"
+
+[browser]
+gatherUsageStats = false
+
+[theme]
+base = "light"
+# Default #ff4b4b gave 3.3:1 for white chip text and red tab labels; this is 6.6:1.
+primaryColor = "#B42318"
+# Default success text gave 4.49:1 on its green background; this is 6.1:1.
+greenTextColor = "#0E6B2B"

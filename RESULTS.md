@@ -2,7 +2,57 @@
 
 Historical commands below use the repository-local `.venv/bin/python` path for reproducibility. The original October 12–15 measurements used an equivalent Python 3.12 environment in a sibling local project; that path is not part of this standalone repository.
 
+## M8 local login proxy and automated accessibility audit, 23–24 October 2026
+
+Synthetic data only, on this Mac (macOS 15.3.1, Apple silicon), with headless Google Chrome 156.0.8078.47, Streamlit 1.50.0 and Playwright 1.64.0 from P05's environment. Times below are Singapore time. These are local functional checks, not a security review and not an accessibility certification.
+
+- **Login proxy (`ops/auth/`).** A Compose stack of Caddy 2.11.7, oauth2-proxy v7.15.5 and Dex v2.45.1 (images 89 MB, 65 MB and 192 MB) publishes one port on 127.0.0.1. Dex holds three static local users: `reviewer@finrecon.local`, `summary@finrecon.local`, and `norole@finrecon.local`, which has no FinRecon role. `ops/auth/setup_local.py` generates their passwords, the proxy token and the OIDC secrets into the git-ignored `ops/auth/local/`. Caddy deletes client-sent `X-Forwarded-Role`, `X-Forwarded-User`, `X-FinRecon-Proxy-Token` and `X-Auth-Request-*` headers. It checks the session with oauth2-proxy, maps the confirmed e-mail to a role, and sets the role, user and token itself. Streamlit runs on the host bound to 127.0.0.1 with `FINRECON_ROLE_HEADER`, `FINRECON_USER_HEADER` and `FINRECON_PROXY_TOKEN`.
+- **Proxy walkthrough: 26/26 checks** ([evidence](evidence/proxy_walkthrough.json), [screenshot](evidence/browser/proxy_reviewer.png)). The checks were listed in `eval/proxy_walkthrough.py` and committed (`1091e02`) before the first run. That first run stopped with an exception at the summary sign-in, before any result was recorded. oauth2-proxy's default `approval_prompt=force` made Dex show a consent page. After `--approval-prompt=auto` was added, the run passed 26/26, and the final run, after the accessibility fixes below, passed 26/26 again. What it showed:
+  - **Blocked (6/6).** Without a session, `/`, `/_stcore/health` and a websocket upgrade to `/_stcore/stream` were all answered with a 302 to `/oauth2/sign_in`. Adding the real proxy token, a reviewer role header and a reviewer e-mail header changed nothing. Reaching Streamlit directly with a reviewer role header but no token gave "Access denied". A wrong Dex password left the browser on `/dex/auth/local/login` with no session cookie.
+  - **Roles (8/8).** `summary@finrecon.local` saw "summary (summary@finrecon.local)", the five metrics, no verify button, no label toggle and the source-access notice. The same user still saw `summary` and no verify button while the browser sent `X-Forwarded-Role: reviewer`, reviewer user and e-mail headers, and the real proxy token. `norole@finrecon.local` signed in and was denied with "no FinRecon role for this user (none)" and no metrics.
+  - **Journey (10/10).** The reviewer journey from the browser walkthrough also passed through the proxy: metrics equal to the snapshot (123 figures, 91 matched, 32 breaks, 0 failed controls, 14 findings), `REC-PAY-00019` equal to `trace`, verified source rows, and planted versus false-positive labels. Keyboard verification took 14 keys.
+  - **Websocket and session (2/2).** The reviewer page opened three `/_stcore/stream` websockets through the proxy, which received 11, 411 and 102 frames. After `/oauth2/sign_out`, the next visit landed on the Dex form.
+
+  The stack and app server were removed after each run. No generated secret appears in the evidence (the script checks this). The Makefile path (`make auth-setup`, `auth-up`, `dashboard-proxied`, `auth-down`) was also run once: the app's own health check answered `ok`, and an unauthenticated `/` through the proxy, with or without a spoofed role header, got a 302. Limits: three local demo users, plain HTTP on 127.0.0.1 (cookies not `Secure`), no MFA, no real directory and no penetration test.
+- **Automated accessibility audit** ([before](evidence/a11y_audit_before.json), [after](evidence/a11y_audit_after.json)). The protocol in `eval/a11y_audit.py` was committed (`f94667c`) before the baseline run. It uses axe-core 4.13.0 with the WCAG 2.0/2.1/2.2 A and AA tags plus best-practice. It scans six screens: the reviewer's four tabs (Drill-through after verification), the summary role's Drill-through and the access-denied page. It then runs a counted Tab cycle and an accessibility-tree probe of the tables. After the baseline, the probe was extended to plain `st.table` elements and to the new plain-table option, so those plain-mode rows are extra measurements with no baseline.
+
+  | Measure | Before (23 Oct, 19:00) | After (24 Oct, 01:18) |
+  |---|---|---|
+  | Unique axe violations (rule × element, six screens) | 71 | 33 |
+  | WCAG-tagged | 32: colour contrast 22, `aria-allowed-attr` 7, `button-name` 2, `summary-name` 1 | 5: `aria-allowed-attr` 5 |
+  | Best-practice only | 39: `region` 35, `heading-order` 4 | 28: `region` 28 |
+  | Violation nodes, summed over the six screens | 186 | 105 |
+  | Tab stops in one full cycle, Breaks tab | 45 (19 in the sidebar, 16 of them multiselect chips) | 21 (5 in the sidebar, 0 chips) |
+  | Tab stops in one full cycle, Drill-through tab | 33 | 17 |
+  | Keys to reach and press "Verify source rows" (browser walkthrough) | 29 on 20 October | 13 (9 Tab, 3 ArrowRight, Enter) |
+  | Breaks table rows whose figure ID is in the accessibility tree (32 rows) | 12 (grid) | 12 in the default grid; 32 with "Plain tables" on |
+
+  Changes behind these numbers:
+  - the theme's primary red changed from #ff4b4b to #B42318 (white chip text and red tab labels went from 3.3:1 to 6.6:1);
+  - success text is darker (4.49:1 to 6.1:1);
+  - three captions became body text, since the caption grey measured 3.7:1;
+  - section headings became h2, so none skips a level;
+  - `toolbarMode = "minimal"` removed the developer Deploy button and an unlabelled menu button;
+  - the bar chart moved to Altair without Vega's unnamed "…" actions menu, with a text description that lists the counts;
+  - the status and finding-type multiselects sit in a collapsed expander, with a visible line saying what is selected;
+  - the five-row age overview is now a static table whose first column is the row header, with darkened header text.
+
+  A new sidebar option, "Plain tables", renders every table the same way. Glide grids draw on a canvas and exposed only the rows on screen: 12 data rows plus the header row per grid, which meant 12 of 32 break IDs, 12 of 14 finding IDs, and 60 of the 370 quality-control cells (12 of 74 rows). In plain mode all 224 break cells (192 cells and 32 row headers) and all 14 findings were in the tree. The grid remains the default because it can sort, search and download.
+
+  **What remains:**
+  - Five `aria-allowed-attr` findings: `aria-expanded` on Streamlit's own sidebar `<section>` and on chart and grid wrappers.
+  - 28 `region` findings, because Streamlit renders no landmark elements.
+  - "Needs review" results for colour contrast and duplicate ARIA IDs.
+  - Each Glide grid still adds 4 toolbar buttons and several unnamed canvas stops (7 for the breaks grid).
+
+  These come from Streamlit's own components, and the app cannot change them without patching Streamlit. **No screen-reader pass (VoiceOver or NVDA), zoom/reflow check or test with disabled users has been done; it needs a person.** The screen is therefore not described as accessible or WCAG conformant.
+- **Browser walkthrough rerun.** `make browser-walkthrough` passed **30/30** on the changed screen, and every server stopped cleanly. `evidence/browser_walkthrough.json` and its screenshots now hold this 24 October run (Chrome 156). The 20 October figures below are kept as recorded then.
+- **Tests.** 58 tests (one new AppTest for plain tables; the summary-role AppTest now checks for the label toggle by name, since every role gets the plain-table checkbox). In P10's environment, 51 passed and 7 AppTests were skipped. In P05's environment, 54 passed and the 4 Tableau tests were skipped. Before the changes, the same commands gave 57 tests (51/6 skipped and 53/4 skipped).
+- **Not done.** No Tableau workbook (Tableau is not installed). No data-dictionary update: `docs/DATA_DICTIONARY.md` still has the user's uncommitted edit (SHA-256 `6abce7cb…c0a3ee`, unchanged), and the new `bi.*` and batch tables are still missing from `data_dictionary.py`. No manual screen-reader review.
+
 ## M8 roles, browser walkthrough and Tableau extract, 20 October 2026 (evening)
+
+This section records the state on 20 October. Its "Not done" list is superseded in part by the 23–24 October section above.
 
 Synthetic data only, as below. These checks run on this Mac and describe local behaviour, not a deployed service.
 

@@ -1,0 +1,22 @@
+# Rendered by ops/auth/setup_local.py into ops/auth/local/dex.yaml (git-ignored).
+# Local demo identity provider: static users, in-memory storage, no e-mail or
+# external connector. Never reuse these users or secrets outside this machine.
+issuer: http://127.0.0.1:${auth_port}/dex
+storage:
+  type: memory
+web:
+  http: 0.0.0.0:5556
+oauth2:
+  skipApprovalScreen: true
+  responseTypes: ["code"]
+expiry:
+  idTokens: "1h"
+staticClients:
+  - id: finrecon-proxy
+    name: FinRecon local proxy
+    secret: "${client_secret}"
+    redirectURIs:
+      - "http://127.0.0.1:${auth_port}/oauth2/callback"
+enablePasswordDB: true
+staticPasswords:
+${users}

@@ -1,0 +1,1291 @@
+{
+  "generated_at": "2026-10-23T17:18:37+00:00",
+  "label": "after",
+  "what": "axe-core scan, keyboard Tab cycle and Glide-grid accessibility-tree probe of dashboard.py on a disposable synthetic batch",
+  "environment": {
+    "python": "3.12.13",
+    "platform": "macOS-15.3.1-arm64-arm-64bit",
+    "chrome": "156.0.8078.47",
+    "streamlit": "1.50.0",
+    "playwright": "1.64.0",
+    "axe_core": "4.13.0",
+    "axe_tags": [
+      "wcag2a",
+      "wcag2aa",
+      "wcag21a",
+      "wcag21aa",
+      "wcag22aa",
+      "best-practice"
+    ]
+  },
+  "totals": {
+    "unique_violations": 33,
+    "unique_wcag_violations": 5,
+    "unique_best_practice_violations": 28,
+    "rules": {
+      "aria-allowed-attr": {
+        "impact": "critical",
+        "wcag": true,
+        "elements": 5
+      },
+      "region": {
+        "impact": "moderate",
+        "wcag": false,
+        "elements": 28
+      }
+    }
+  },
+  "per_screen": {
+    "S1_reviewer_breaks": {
+      "violated_rules": 2,
+      "violation_nodes": 21,
+      "wcag_rules": [
+        "aria-allowed-attr"
+      ],
+      "best_practice_rules": [
+        "region"
+      ],
+      "incomplete_rules": [
+        "color-contrast",
+        "duplicate-id-aria"
+      ]
+    },
+    "S2_reviewer_quality": {
+      "violated_rules": 2,
+      "violation_nodes": 21,
+      "wcag_rules": [
+        "aria-allowed-attr"
+      ],
+      "best_practice_rules": [
+        "region"
+      ],
+      "incomplete_rules": [
+        "duplicate-id-aria"
+      ]
+    },
+    "S3_reviewer_findings": {
+      "violated_rules": 2,
+      "violation_nodes": 21,
+      "wcag_rules": [
+        "aria-allowed-attr"
+      ],
+      "best_practice_rules": [
+        "region"
+      ],
+      "incomplete_rules": [
+        "duplicate-id-aria"
+      ]
+    },
+    "S4_reviewer_drill_verified": {
+      "violated_rules": 2,
+      "violation_nodes": 21,
+      "wcag_rules": [
+        "aria-allowed-attr"
+      ],
+      "best_practice_rules": [
+        "region"
+      ],
+      "incomplete_rules": [
+        "color-contrast",
+        "duplicate-id-aria"
+      ]
+    },
+    "S5_summary_drill": {
+      "violated_rules": 2,
+      "violation_nodes": 19,
+      "wcag_rules": [
+        "aria-allowed-attr"
+      ],
+      "best_practice_rules": [
+        "region"
+      ],
+      "incomplete_rules": [
+        "duplicate-id-aria"
+      ]
+    },
+    "S6_access_denied": {
+      "violated_rules": 1,
+      "violation_nodes": 2,
+      "wcag_rules": [],
+      "best_practice_rules": [
+        "region"
+      ],
+      "incomplete_rules": []
+    }
+  },
+  "plain_tables_mode": {
+    "S1_plain": {
+      "violated_rules": [
+        "aria-allowed-attr",
+        "region"
+      ],
+      "violation_nodes": 20
+    },
+    "S3_plain": {
+      "violated_rules": [
+        "aria-allowed-attr",
+        "region"
+      ],
+      "violation_nodes": 20
+    }
+  },
+  "keyboard": {
+    "breaks_tab": {
+      "complete_cycle": true,
+      "total_stops": 21,
+      "sidebar_stops": 5,
+      "multiselect_stops": 0,
+      "tabpanel_stops": 14,
+      "unnamed_stops": [
+        "Canvas <canvas> in stDataFrameResizable",
+        "Canvas <canvas> in stDataFrameResizable",
+        "Canvas <canvas> in stDataFrameResizable",
+        "Canvas <canvas> in stDataFrameResizable",
+        "Canvas <canvas> in stDataFrameResizable",
+        "Canvas <canvas> in stDataFrameResizable",
+        "Canvas <canvas> in stDataFrameResizable",
+        "group <div> in stDataFrameResizable"
+      ],
+      "sequence": [
+        "textbox: Select a date. [sidebar]",
+        "textbox: Select a date range. [sidebar]",
+        "DisclosureTriangle: keyboard_arrow_right Status and finding-type filters [sidebar]",
+        "checkbox: Plain tables (every row as text, for screen readers) [sidebar]",
+        "checkbox: Show synthetic fixture labels (development only) [sidebar]",
+        "generic: FinRecon: batch review Synthetic SGD data. Read-only: no wri",
+        "tab: Breaks",
+        "button: Show data",
+        "button: Fullscreen",
+        "button: Show/hide columns",
+        "button: Download as CSV",
+        "button: Search",
+        "button: Fullscreen",
+        "Canvas: ",
+        "Canvas: ",
+        "Canvas: ",
+        "Canvas: ",
+        "Canvas: ",
+        "Canvas: ",
+        "Canvas: ",
+        "group: "
+      ]
+    },
+    "drill_through_tab": {
+      "complete_cycle": true,
+      "total_stops": 17,
+      "sidebar_stops": 5,
+      "multiselect_stops": 0,
+      "tabpanel_stops": 10,
+      "unnamed_stops": [
+        "Canvas <canvas> in stDataFrameResizable",
+        "Canvas <canvas> in stDataFrameResizable",
+        "Canvas <canvas> in stDataFrameResizable",
+        "Canvas <canvas> in stDataFrameResizable"
+      ],
+      "sequence": [
+        "combobox: Selected REC-ORPHAN-00. Figure ID",
+        "button: Verify source rows",
+        "button: Show/hide columns",
+        "button: Download as CSV",
+        "button: Search",
+        "button: Fullscreen",
+        "Canvas: ",
+        "Canvas: ",
+        "Canvas: ",
+        "Canvas: ",
+        "textbox: Select a date. [sidebar]",
+        "textbox: Select a date range. [sidebar]",
+        "DisclosureTriangle: keyboard_arrow_right Status and finding-type filters [sidebar]",
+        "checkbox: Plain tables (every row as text, for screen readers) [sidebar]",
+        "checkbox: Show synthetic fixture labels (development only) [sidebar]",
+        "generic: FinRecon: batch review Synthetic SGD data. Read-only: no wri",
+        "tab: Drill-through"
+      ]
+    }
+  },
+  "grids": {
+    "S1": [
+      {
+        "table": "aged-break overview",
+        "element": "stTable",
+        "expected_rows": 5,
+        "expected_columns": 3,
+        "expected_cells": 15,
+        "ax_role_counts": {
+          "grid": 0,
+          "table": 1,
+          "row": 6,
+          "gridcell": 0,
+          "cell": 10,
+          "columnheader": 3,
+          "rowheader": 5
+        },
+        "data_cells_exposed": 10,
+        "first_key_found": true,
+        "last_key_found": true,
+        "keys_found": 1
+      },
+      {
+        "table": "breaks",
+        "element": "stDataFrame",
+        "expected_rows": 32,
+        "expected_columns": 7,
+        "expected_cells": 224,
+        "ax_role_counts": {
+          "grid": 1,
+          "table": 0,
+          "row": 13,
+          "gridcell": 84,
+          "cell": 0,
+          "columnheader": 7,
+          "rowheader": 0
+        },
+        "data_cells_exposed": 84,
+        "first_key_found": true,
+        "last_key_found": false,
+        "keys_found": 12
+      }
+    ],
+    "S2": [
+      {
+        "table": "quality controls",
+        "element": "stDataFrame",
+        "expected_rows": 74,
+        "expected_columns": 5,
+        "expected_cells": 370,
+        "ax_role_counts": {
+          "grid": 1,
+          "table": 0,
+          "row": 13,
+          "gridcell": 60,
+          "cell": 0,
+          "columnheader": 5,
+          "rowheader": 0
+        },
+        "data_cells_exposed": 60,
+        "first_key_found": false,
+        "last_key_found": false,
+        "keys_found": 0
+      }
+    ],
+    "S3": [
+      {
+        "table": "finding queue",
+        "element": "stDataFrame",
+        "expected_rows": 14,
+        "expected_columns": 7,
+        "expected_cells": 98,
+        "ax_role_counts": {
+          "grid": 1,
+          "table": 0,
+          "row": 13,
+          "gridcell": 84,
+          "cell": 0,
+          "columnheader": 7,
+          "rowheader": 0
+        },
+        "data_cells_exposed": 84,
+        "first_key_found": true,
+        "last_key_found": false,
+        "keys_found": 12
+      }
+    ],
+    "S1_plain": [
+      {
+        "table": "aged-break overview",
+        "element": "stTable",
+        "expected_rows": 5,
+        "expected_columns": 3,
+        "expected_cells": 15,
+        "ax_role_counts": {
+          "grid": 0,
+          "table": 1,
+          "row": 6,
+          "gridcell": 0,
+          "cell": 10,
+          "columnheader": 3,
+          "rowheader": 5
+        },
+        "data_cells_exposed": 10,
+        "first_key_found": true,
+        "last_key_found": true,
+        "keys_found": 1
+      },
+      {
+        "table": "breaks",
+        "element": "stTable",
+        "expected_rows": 32,
+        "expected_columns": 7,
+        "expected_cells": 224,
+        "ax_role_counts": {
+          "grid": 0,
+          "table": 1,
+          "row": 33,
+          "gridcell": 0,
+          "cell": 192,
+          "columnheader": 7,
+          "rowheader": 32
+        },
+        "data_cells_exposed": 192,
+        "first_key_found": true,
+        "last_key_found": true,
+        "keys_found": 32
+      }
+    ],
+    "S3_plain": [
+      {
+        "table": "finding queue",
+        "element": "stTable",
+        "expected_rows": 14,
+        "expected_columns": 7,
+        "expected_cells": 98,
+        "ax_role_counts": {
+          "grid": 0,
+          "table": 1,
+          "row": 15,
+          "gridcell": 0,
+          "cell": 84,
+          "columnheader": 7,
+          "rowheader": 14
+        },
+        "data_cells_exposed": 84,
+        "first_key_found": true,
+        "last_key_found": true,
+        "keys_found": 14
+      }
+    ]
+  },
+  "axe_raw": {
+    "S1_reviewer_breaks": {
+      "violations": [
+        {
+          "id": "aria-allowed-attr",
+          "impact": "critical",
+          "tags": [
+            "cat.aria",
+            "wcag2a",
+            "wcag412",
+            "EN-301-549",
+            "EN-9.4.1.2",
+            "RGAAv4",
+            "RGAA-7.1.1"
+          ],
+          "help": "Elements must only use supported ARIA attributes",
+          "nodes": [
+            {
+              "target": ".stSidebar",
+              "summary": "Fix all of the following:\n  ARIA attribute is not allowed: aria-expanded=\"true\""
+            },
+            {
+              "target": "#tabs-bui8-tabpanel-0 > .st-emotion-cache-tn0cau.stVerticalBlock[direction=\"column\"] > .st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(5) > .st-emotion-cache-uwwqev.e13s7uld0[data-testid=\"stFullScreenFrame\"] > .stDataFrame.st-emotion-cache-1kta6t8.e8es05k0 > .st-emotion-cache-2h0ntr.stElementToolbar[target=\".e8es05k0\"] > .st-emotion-cache-12rj9lz.ekeylwq1 > div[aria-haspopup=\"true\"]",
+              "summary": "Fix all of the following:\n  ARIA attribute is not allowed: aria-expanded=\"false\""
+            }
+          ],
+          "wcag": true,
+          "node_count": 2
+        },
+        {
+          "id": "region",
+          "impact": "moderate",
+          "tags": [
+            "cat.keyboard",
+            "best-practice",
+            "RGAAv4",
+            "RGAA-9.2.1"
+          ],
+          "help": "All page content should be contained by landmarks",
+          "nodes": [
+            {
+              "target": ".e4man115 > .st-emotion-cache-tn0cau.stVerticalBlock[direction=\"column\"] > .st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(1)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(2) > .stDateInput[data-testid=\"stDateInput\"] > .st-ae",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(2) > .stDateInput[data-testid=\"stDateInput\"] > p:nth-child(3)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(3) > .stDateInput[data-testid=\"stDateInput\"] > .st-ae",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(3) > .stDateInput[data-testid=\"stDateInput\"] > p:nth-child(3)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".e4man115 > .st-emotion-cache-tn0cau.stVerticalBlock[direction=\"column\"] > .st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(4)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-zh2fnc.stElementContainer[width=\"fit-content\"]:nth-child(6) > .row-widget.stCheckbox.st-emotion-cache-mo6sqg > .st-f0.st-f1.st-f2 > .st-fq.st-fr.st-fs",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-zh2fnc.stElementContainer[width=\"fit-content\"]:nth-child(6) > .row-widget.stCheckbox.st-emotion-cache-mo6sqg > .st-f0.st-f1.st-f2 > .st-ft.st-fi.st-by > .st-emotion-cache-y4bq5x.eg2gxky1[visibility=\"0\"] > .st-emotion-cache-17k2yau.et2rgd20[data-testid=\"stMarkdownContainer\"]",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-zh2fnc.stElementContainer[width=\"fit-content\"]:nth-child(7)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".stMainBlockContainer > .st-emotion-cache-tn0cau.stVerticalBlock[direction=\"column\"] > .st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(1)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".stMainBlockContainer > .st-emotion-cache-tn0cau.stVerticalBlock[direction=\"column\"] > .st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(2)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".stMainBlockContainer > .st-emotion-cache-tn0cau.stVerticalBlock[direction=\"column\"] > .st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(3)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".stMainBlockContainer > .st-emotion-cache-tn0cau.stVerticalBlock[direction=\"column\"] > .st-emotion-cache-18kf3ut.e196pkbe3[data-testid=\"stLayoutWrapper\"]",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": "#tabs-bui8-tab-0",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": "#tabs-bui8-tab-1",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": "#tabs-bui8-tab-2",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": "#tabs-bui8-tab-3",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": "#tabs-bui8-tabpanel-0",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(6)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            }
+          ],
+          "wcag": false,
+          "node_count": 19
+        }
+      ],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": 16
+        },
+        {
+          "id": "duplicate-id-aria",
+          "impact": "critical",
+          "nodes": 1
+        }
+      ]
+    },
+    "S2_reviewer_quality": {
+      "violations": [
+        {
+          "id": "aria-allowed-attr",
+          "impact": "critical",
+          "tags": [
+            "cat.aria",
+            "wcag2a",
+            "wcag412",
+            "EN-301-549",
+            "EN-9.4.1.2",
+            "RGAAv4",
+            "RGAA-7.1.1"
+          ],
+          "help": "Elements must only use supported ARIA attributes",
+          "nodes": [
+            {
+              "target": ".stSidebar",
+              "summary": "Fix all of the following:\n  ARIA attribute is not allowed: aria-expanded=\"true\""
+            },
+            {
+              "target": "#tabs-bui8-tabpanel-1 > .st-emotion-cache-tn0cau.stVerticalBlock[direction=\"column\"] > .st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(3) > .st-emotion-cache-uwwqev.e13s7uld0[data-testid=\"stFullScreenFrame\"] > .stDataFrame.st-emotion-cache-1kta6t8.e8es05k0 > .st-emotion-cache-2h0ntr.stElementToolbar[target=\".e8es05k0\"] > .st-emotion-cache-12rj9lz.ekeylwq1 > div[aria-haspopup=\"true\"]",
+              "summary": "Fix all of the following:\n  ARIA attribute is not allowed: aria-expanded=\"false\""
+            }
+          ],
+          "wcag": true,
+          "node_count": 2
+        },
+        {
+          "id": "region",
+          "impact": "moderate",
+          "tags": [
+            "cat.keyboard",
+            "best-practice",
+            "RGAAv4",
+            "RGAA-9.2.1"
+          ],
+          "help": "All page content should be contained by landmarks",
+          "nodes": [
+            {
+              "target": ".e4man115 > .st-emotion-cache-tn0cau.stVerticalBlock[direction=\"column\"] > .st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(1)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(2) > .stDateInput[data-testid=\"stDateInput\"] > .st-ae",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(2) > .stDateInput[data-testid=\"stDateInput\"] > p:nth-child(3)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(3) > .stDateInput[data-testid=\"stDateInput\"] > .st-ae",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(3) > .stDateInput[data-testid=\"stDateInput\"] > p:nth-child(3)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".e4man115 > .st-emotion-cache-tn0cau.stVerticalBlock[direction=\"column\"] > .st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(4)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-zh2fnc.stElementContainer[width=\"fit-content\"]:nth-child(6) > .row-widget.stCheckbox.st-emotion-cache-mo6sqg > .st-f0.st-f1.st-f2 > .st-fq.st-fr.st-fs",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-zh2fnc.stElementContainer[width=\"fit-content\"]:nth-child(6) > .row-widget.stCheckbox.st-emotion-cache-mo6sqg > .st-f0.st-f1.st-f2 > .st-ft.st-fi.st-by > .st-emotion-cache-y4bq5x.eg2gxky1[visibility=\"0\"] > .st-emotion-cache-17k2yau.et2rgd20[data-testid=\"stMarkdownContainer\"]",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-zh2fnc.stElementContainer[width=\"fit-content\"]:nth-child(7)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".stMainBlockContainer > .st-emotion-cache-tn0cau.stVerticalBlock[direction=\"column\"] > .st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(1)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".stMainBlockContainer > .st-emotion-cache-tn0cau.stVerticalBlock[direction=\"column\"] > .st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(2)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".stMainBlockContainer > .st-emotion-cache-tn0cau.stVerticalBlock[direction=\"column\"] > .st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(3)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".stMainBlockContainer > .st-emotion-cache-tn0cau.stVerticalBlock[direction=\"column\"] > .st-emotion-cache-18kf3ut.e196pkbe3[data-testid=\"stLayoutWrapper\"]",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": "#tabs-bui8-tab-0",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": "#tabs-bui8-tab-1",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": "#tabs-bui8-tab-2",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": "#tabs-bui8-tab-3",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": "#tabs-bui8-tabpanel-1",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(6)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            }
+          ],
+          "wcag": false,
+          "node_count": 19
+        }
+      ],
+      "incomplete": [
+        {
+          "id": "duplicate-id-aria",
+          "impact": "critical",
+          "nodes": 1
+        }
+      ]
+    },
+    "S3_reviewer_findings": {
+      "violations": [
+        {
+          "id": "aria-allowed-attr",
+          "impact": "critical",
+          "tags": [
+            "cat.aria",
+            "wcag2a",
+            "wcag412",
+            "EN-301-549",
+            "EN-9.4.1.2",
+            "RGAAv4",
+            "RGAA-7.1.1"
+          ],
+          "help": "Elements must only use supported ARIA attributes",
+          "nodes": [
+            {
+              "target": ".stSidebar",
+              "summary": "Fix all of the following:\n  ARIA attribute is not allowed: aria-expanded=\"true\""
+            },
+            {
+              "target": "#tabs-bui8-tabpanel-2 > .st-emotion-cache-tn0cau.stVerticalBlock[direction=\"column\"] > .st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(3) > .st-emotion-cache-uwwqev.e13s7uld0[data-testid=\"stFullScreenFrame\"] > .stDataFrame.st-emotion-cache-1kta6t8.e8es05k0 > .st-emotion-cache-2h0ntr.stElementToolbar[target=\".e8es05k0\"] > .st-emotion-cache-12rj9lz.ekeylwq1 > div[aria-haspopup=\"true\"]",
+              "summary": "Fix all of the following:\n  ARIA attribute is not allowed: aria-expanded=\"false\""
+            }
+          ],
+          "wcag": true,
+          "node_count": 2
+        },
+        {
+          "id": "region",
+          "impact": "moderate",
+          "tags": [
+            "cat.keyboard",
+            "best-practice",
+            "RGAAv4",
+            "RGAA-9.2.1"
+          ],
+          "help": "All page content should be contained by landmarks",
+          "nodes": [
+            {
+              "target": ".e4man115 > .st-emotion-cache-tn0cau.stVerticalBlock[direction=\"column\"] > .st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(1)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(2) > .stDateInput[data-testid=\"stDateInput\"] > .st-ae",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(2) > .stDateInput[data-testid=\"stDateInput\"] > p:nth-child(3)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(3) > .stDateInput[data-testid=\"stDateInput\"] > .st-ae",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(3) > .stDateInput[data-testid=\"stDateInput\"] > p:nth-child(3)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".e4man115 > .st-emotion-cache-tn0cau.stVerticalBlock[direction=\"column\"] > .st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(4)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-zh2fnc.stElementContainer[width=\"fit-content\"]:nth-child(6) > .row-widget.stCheckbox.st-emotion-cache-mo6sqg > .st-f0.st-f1.st-f2 > .st-fq.st-fr.st-fs",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-zh2fnc.stElementContainer[width=\"fit-content\"]:nth-child(6) > .row-widget.stCheckbox.st-emotion-cache-mo6sqg > .st-f0.st-f1.st-f2 > .st-ft.st-fi.st-by > .st-emotion-cache-y4bq5x.eg2gxky1[visibility=\"0\"] > .st-emotion-cache-17k2yau.et2rgd20[data-testid=\"stMarkdownContainer\"]",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-zh2fnc.stElementContainer[width=\"fit-content\"]:nth-child(7)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".stMainBlockContainer > .st-emotion-cache-tn0cau.stVerticalBlock[direction=\"column\"] > .st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(1)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".stMainBlockContainer > .st-emotion-cache-tn0cau.stVerticalBlock[direction=\"column\"] > .st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(2)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".stMainBlockContainer > .st-emotion-cache-tn0cau.stVerticalBlock[direction=\"column\"] > .st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(3)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".stMainBlockContainer > .st-emotion-cache-tn0cau.stVerticalBlock[direction=\"column\"] > .st-emotion-cache-18kf3ut.e196pkbe3[data-testid=\"stLayoutWrapper\"]",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": "#tabs-bui8-tab-0",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": "#tabs-bui8-tab-1",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": "#tabs-bui8-tab-2",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": "#tabs-bui8-tab-3",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": "#tabs-bui8-tabpanel-2",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(6)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            }
+          ],
+          "wcag": false,
+          "node_count": 19
+        }
+      ],
+      "incomplete": [
+        {
+          "id": "duplicate-id-aria",
+          "impact": "critical",
+          "nodes": 1
+        }
+      ]
+    },
+    "S4_reviewer_drill_verified": {
+      "violations": [
+        {
+          "id": "aria-allowed-attr",
+          "impact": "critical",
+          "tags": [
+            "cat.aria",
+            "wcag2a",
+            "wcag412",
+            "EN-301-549",
+            "EN-9.4.1.2",
+            "RGAAv4",
+            "RGAA-7.1.1"
+          ],
+          "help": "Elements must only use supported ARIA attributes",
+          "nodes": [
+            {
+              "target": ".stSidebar",
+              "summary": "Fix all of the following:\n  ARIA attribute is not allowed: aria-expanded=\"true\""
+            },
+            {
+              "target": ".st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(6) > .st-emotion-cache-uwwqev.e13s7uld0[data-testid=\"stFullScreenFrame\"] > .stDataFrame.st-emotion-cache-1kta6t8.e8es05k0 > .st-emotion-cache-2h0ntr.stElementToolbar[target=\".e8es05k0\"] > .st-emotion-cache-12rj9lz.ekeylwq1 > div[aria-haspopup=\"true\"]",
+              "summary": "Fix all of the following:\n  ARIA attribute is not allowed: aria-expanded=\"false\""
+            }
+          ],
+          "wcag": true,
+          "node_count": 2
+        },
+        {
+          "id": "region",
+          "impact": "moderate",
+          "tags": [
+            "cat.keyboard",
+            "best-practice",
+            "RGAAv4",
+            "RGAA-9.2.1"
+          ],
+          "help": "All page content should be contained by landmarks",
+          "nodes": [
+            {
+              "target": ".e4man115 > .st-emotion-cache-tn0cau.stVerticalBlock[direction=\"column\"] > .st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(1)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(2) > .stDateInput[data-testid=\"stDateInput\"] > .st-ae",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(2) > .stDateInput[data-testid=\"stDateInput\"] > p:nth-child(3)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(3) > .stDateInput[data-testid=\"stDateInput\"] > .st-ae",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(3) > .stDateInput[data-testid=\"stDateInput\"] > p:nth-child(3)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".e4man115 > .st-emotion-cache-tn0cau.stVerticalBlock[direction=\"column\"] > .st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(4)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-zh2fnc.stElementContainer[width=\"fit-content\"]:nth-child(6) > .row-widget.stCheckbox.st-emotion-cache-mo6sqg > .st-f0.st-f1.st-f2 > .st-fq.st-fr.st-fs",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-zh2fnc.stElementContainer[width=\"fit-content\"]:nth-child(6) > .row-widget.stCheckbox.st-emotion-cache-mo6sqg > .st-f0.st-f1.st-f2 > .st-fi.st-ft.st-by > .st-emotion-cache-y4bq5x.eg2gxky1[visibility=\"0\"] > .st-emotion-cache-17k2yau.et2rgd20[data-testid=\"stMarkdownContainer\"]",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-zh2fnc.stElementContainer[width=\"fit-content\"]:nth-child(7)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".stMainBlockContainer > .st-emotion-cache-tn0cau.stVerticalBlock[direction=\"column\"] > .st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(1)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".stMainBlockContainer > .st-emotion-cache-tn0cau.stVerticalBlock[direction=\"column\"] > .st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(2)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".stMainBlockContainer > .st-emotion-cache-tn0cau.stVerticalBlock[direction=\"column\"] > .st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(3)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".stMainBlockContainer > .st-emotion-cache-tn0cau.stVerticalBlock[direction=\"column\"] > .st-emotion-cache-18kf3ut.e196pkbe3[data-testid=\"stLayoutWrapper\"]",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": "#tabs-bui8-tab-0",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": "#tabs-bui8-tab-1",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": "#tabs-bui8-tab-2",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": "#tabs-bui8-tab-3",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": "#tabs-bui8-tabpanel-3",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".stMainBlockContainer > .st-emotion-cache-tn0cau.stVerticalBlock[direction=\"column\"] > .st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(6)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            }
+          ],
+          "wcag": false,
+          "node_count": 19
+        }
+      ],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": 1
+        },
+        {
+          "id": "duplicate-id-aria",
+          "impact": "critical",
+          "nodes": 1
+        }
+      ]
+    },
+    "S5_summary_drill": {
+      "violations": [
+        {
+          "id": "aria-allowed-attr",
+          "impact": "critical",
+          "tags": [
+            "cat.aria",
+            "wcag2a",
+            "wcag412",
+            "EN-301-549",
+            "EN-9.4.1.2",
+            "RGAAv4",
+            "RGAA-7.1.1"
+          ],
+          "help": "Elements must only use supported ARIA attributes",
+          "nodes": [
+            {
+              "target": ".stSidebar",
+              "summary": "Fix all of the following:\n  ARIA attribute is not allowed: aria-expanded=\"true\""
+            }
+          ],
+          "wcag": true,
+          "node_count": 1
+        },
+        {
+          "id": "region",
+          "impact": "moderate",
+          "tags": [
+            "cat.keyboard",
+            "best-practice",
+            "RGAAv4",
+            "RGAA-9.2.1"
+          ],
+          "help": "All page content should be contained by landmarks",
+          "nodes": [
+            {
+              "target": ".e4man115 > .st-emotion-cache-tn0cau.stVerticalBlock[direction=\"column\"] > .st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(1)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(2) > .stDateInput[data-testid=\"stDateInput\"] > .st-ae",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(2) > .stDateInput[data-testid=\"stDateInput\"] > p:nth-child(3)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(3) > .stDateInput[data-testid=\"stDateInput\"] > .st-ae",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(3) > .stDateInput[data-testid=\"stDateInput\"] > p:nth-child(3)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".e4man115 > .st-emotion-cache-tn0cau.stVerticalBlock[direction=\"column\"] > .st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(4)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-fp",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-y4bq5x > .st-emotion-cache-17k2yau.et2rgd20[data-testid=\"stMarkdownContainer\"]",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".stMainBlockContainer > .st-emotion-cache-tn0cau.stVerticalBlock[direction=\"column\"] > .st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(1)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".stMainBlockContainer > .st-emotion-cache-tn0cau.stVerticalBlock[direction=\"column\"] > .st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(2)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".stMainBlockContainer > .st-emotion-cache-tn0cau.stVerticalBlock[direction=\"column\"] > .st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(3)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".stMainBlockContainer > .st-emotion-cache-tn0cau.stVerticalBlock[direction=\"column\"] > .st-emotion-cache-18kf3ut.e196pkbe3[data-testid=\"stLayoutWrapper\"]",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": "#tabs-bui8-tab-0",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": "#tabs-bui8-tab-1",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": "#tabs-bui8-tab-2",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": "#tabs-bui8-tab-3",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": "#tabs-bui8-tabpanel-3",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(6)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            }
+          ],
+          "wcag": false,
+          "node_count": 18
+        }
+      ],
+      "incomplete": [
+        {
+          "id": "duplicate-id-aria",
+          "impact": "critical",
+          "nodes": 1
+        }
+      ]
+    },
+    "S6_access_denied": {
+      "violations": [
+        {
+          "id": "region",
+          "impact": "moderate",
+          "tags": [
+            "cat.keyboard",
+            "best-practice",
+            "RGAAv4",
+            "RGAA-9.2.1"
+          ],
+          "help": "All page content should be contained by landmarks",
+          "nodes": [
+            {
+              "target": ".stElementContainer.element-container.st-emotion-cache-1vo6xi6:nth-child(1)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".stElementContainer.element-container.st-emotion-cache-1vo6xi6:nth-child(2)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            }
+          ],
+          "wcag": false,
+          "node_count": 2
+        }
+      ],
+      "incomplete": []
+    }
+  },
+  "axe_raw_plain_tables": {
+    "S1_plain": {
+      "violations": [
+        {
+          "id": "aria-allowed-attr",
+          "impact": "critical",
+          "tags": [
+            "cat.aria",
+            "wcag2a",
+            "wcag412",
+            "EN-301-549",
+            "EN-9.4.1.2",
+            "RGAAv4",
+            "RGAA-7.1.1"
+          ],
+          "help": "Elements must only use supported ARIA attributes",
+          "nodes": [
+            {
+              "target": ".stSidebar",
+              "summary": "Fix all of the following:\n  ARIA attribute is not allowed: aria-expanded=\"true\""
+            }
+          ],
+          "wcag": true,
+          "node_count": 1
+        },
+        {
+          "id": "region",
+          "impact": "moderate",
+          "tags": [
+            "cat.keyboard",
+            "best-practice",
+            "RGAAv4",
+            "RGAA-9.2.1"
+          ],
+          "help": "All page content should be contained by landmarks",
+          "nodes": [
+            {
+              "target": ".e4man115 > .st-emotion-cache-tn0cau.stVerticalBlock[direction=\"column\"] > .st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(1)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(2) > .stDateInput[data-testid=\"stDateInput\"] > .st-ae",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(2) > .stDateInput[data-testid=\"stDateInput\"] > p:nth-child(3)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(3) > .stDateInput[data-testid=\"stDateInput\"] > .st-ae",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(3) > .stDateInput[data-testid=\"stDateInput\"] > p:nth-child(3)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".e4man115 > .st-emotion-cache-tn0cau.stVerticalBlock[direction=\"column\"] > .st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(4)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-zh2fnc.stElementContainer[width=\"fit-content\"]:nth-child(6) > .row-widget.stCheckbox.st-emotion-cache-mo6sqg > .st-e0.st-e1.st-e2 > .st-eq.st-er.st-es",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-zh2fnc.stElementContainer[width=\"fit-content\"]:nth-child(6) > .row-widget.stCheckbox.st-emotion-cache-mo6sqg > .st-e0.st-e1.st-e2 > .st-et.st-ei.st-by > .st-emotion-cache-y4bq5x.eg2gxky1[visibility=\"0\"] > .st-emotion-cache-17k2yau.et2rgd20[data-testid=\"stMarkdownContainer\"]",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-zh2fnc.stElementContainer[width=\"fit-content\"]:nth-child(7)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".stMainBlockContainer > .st-emotion-cache-tn0cau.stVerticalBlock[direction=\"column\"] > .st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(1)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".stMainBlockContainer > .st-emotion-cache-tn0cau.stVerticalBlock[direction=\"column\"] > .st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(2)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".stMainBlockContainer > .st-emotion-cache-tn0cau.stVerticalBlock[direction=\"column\"] > .st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(3)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".stMainBlockContainer > .st-emotion-cache-tn0cau.stVerticalBlock[direction=\"column\"] > .st-emotion-cache-18kf3ut.e196pkbe3[data-testid=\"stLayoutWrapper\"]",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": "#tabs-bui9-tab-0",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": "#tabs-bui9-tab-1",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": "#tabs-bui9-tab-2",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": "#tabs-bui9-tab-3",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": "#tabs-bui9-tabpanel-0",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(6)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            }
+          ],
+          "wcag": false,
+          "node_count": 19
+        }
+      ],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": 16
+        },
+        {
+          "id": "duplicate-id-aria",
+          "impact": "critical",
+          "nodes": 1
+        }
+      ]
+    },
+    "S3_plain": {
+      "violations": [
+        {
+          "id": "aria-allowed-attr",
+          "impact": "critical",
+          "tags": [
+            "cat.aria",
+            "wcag2a",
+            "wcag412",
+            "EN-301-549",
+            "EN-9.4.1.2",
+            "RGAAv4",
+            "RGAA-7.1.1"
+          ],
+          "help": "Elements must only use supported ARIA attributes",
+          "nodes": [
+            {
+              "target": ".stSidebar",
+              "summary": "Fix all of the following:\n  ARIA attribute is not allowed: aria-expanded=\"true\""
+            }
+          ],
+          "wcag": true,
+          "node_count": 1
+        },
+        {
+          "id": "region",
+          "impact": "moderate",
+          "tags": [
+            "cat.keyboard",
+            "best-practice",
+            "RGAAv4",
+            "RGAA-9.2.1"
+          ],
+          "help": "All page content should be contained by landmarks",
+          "nodes": [
+            {
+              "target": ".e4man115 > .st-emotion-cache-tn0cau.stVerticalBlock[direction=\"column\"] > .st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(1)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(2) > .stDateInput[data-testid=\"stDateInput\"] > .st-ae",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(2) > .stDateInput[data-testid=\"stDateInput\"] > p:nth-child(3)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(3) > .stDateInput[data-testid=\"stDateInput\"] > .st-ae",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(3) > .stDateInput[data-testid=\"stDateInput\"] > p:nth-child(3)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".e4man115 > .st-emotion-cache-tn0cau.stVerticalBlock[direction=\"column\"] > .st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(4)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-zh2fnc.stElementContainer[width=\"fit-content\"]:nth-child(6) > .row-widget.stCheckbox.st-emotion-cache-mo6sqg > .st-e0.st-e1.st-e2 > .st-eq.st-er.st-es",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-zh2fnc.stElementContainer[width=\"fit-content\"]:nth-child(6) > .row-widget.stCheckbox.st-emotion-cache-mo6sqg > .st-e0.st-e1.st-e2 > .st-et.st-ei.st-by > .st-emotion-cache-y4bq5x.eg2gxky1[visibility=\"0\"] > .st-emotion-cache-17k2yau.et2rgd20[data-testid=\"stMarkdownContainer\"]",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-zh2fnc.stElementContainer[width=\"fit-content\"]:nth-child(7)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".stMainBlockContainer > .st-emotion-cache-tn0cau.stVerticalBlock[direction=\"column\"] > .st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(1)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".stMainBlockContainer > .st-emotion-cache-tn0cau.stVerticalBlock[direction=\"column\"] > .st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(2)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".stMainBlockContainer > .st-emotion-cache-tn0cau.stVerticalBlock[direction=\"column\"] > .st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(3)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".stMainBlockContainer > .st-emotion-cache-tn0cau.stVerticalBlock[direction=\"column\"] > .st-emotion-cache-18kf3ut.e196pkbe3[data-testid=\"stLayoutWrapper\"]",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": "#tabs-bui9-tab-0",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": "#tabs-bui9-tab-1",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": "#tabs-bui9-tab-2",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": "#tabs-bui9-tab-3",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": "#tabs-bui9-tabpanel-2",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(6)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            }
+          ],
+          "wcag": false,
+          "node_count": 19
+        }
+      ],
+      "incomplete": [
+        {
+          "id": "duplicate-id-aria",
+          "impact": "critical",
+          "nodes": 1
+        }
+      ]
+    }
+  },
+  "limits": [
+    "Automated checks only: axe-core detects a subset of WCAG failures and lists others as needing manual review.",
+    "No screen-reader (VoiceOver/NVDA) pass, zoom/reflow check or user test was done; these need a person.",
+    "This is not a statement of accessibility or WCAG conformance.",
+    "Synthetic data on a single machine and viewport."
+  ]
+}

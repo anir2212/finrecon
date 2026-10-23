@@ -1,0 +1,8 @@
+{
+  "name": "finrecon-a11y-tools",
+  "private": true,
+  "description": "Pinned axe-core for eval/a11y_audit.py; not part of the Python pipeline.",
+  "devDependencies": {
+    "axe-core": "4.13.0"
+  }
+}

@@ -1,0 +1,161 @@
+{
+  "generated_at": "2026-10-23T17:20:01+00:00",
+  "what": "Headless Chrome through Caddy + oauth2-proxy + Dex (ops/auth) to dashboard.py in proxy mode, on disposable synthetic batches",
+  "environment": {
+    "python": "3.12.13",
+    "platform": "macOS-15.3.1-arm64-arm-64bit",
+    "chrome": "156.0.8078.47",
+    "streamlit": "1.50.0",
+    "playwright": "1.64.0",
+    "images": {
+      "dex": "dexidp/dex:v2.45.1",
+      "oauth2-proxy": "quay.io/oauth2-proxy/oauth2-proxy:v7.15.5",
+      "caddy": "caddy:2.11.7"
+    }
+  },
+  "passed": 26,
+  "total": 26,
+  "secrets_in_evidence": 0,
+  "stack_removed": true,
+  "app_server_stopped": true,
+  "checks": {
+    "blocked.unauthenticated_root_redirected_to_login": true,
+    "blocked.unauthenticated_health_redirected": true,
+    "blocked.unauthenticated_websocket_refused": true,
+    "blocked.spoofed_headers_with_real_token_but_no_session_redirected": true,
+    "blocked.direct_app_without_token_denied": true,
+    "blocked.wrong_password_gives_no_session": true,
+    "roles.summary_role_shown_with_user": true,
+    "roles.summary_metrics_visible": true,
+    "roles.summary_no_verify_button": true,
+    "roles.summary_no_fixture_label_toggle": true,
+    "roles.summary_explains_missing_source_access": true,
+    "roles.summary_spoofed_reviewer_headers_ignored": true,
+    "roles.norole_user_denied_by_app": true,
+    "roles.norole_user_sees_no_metrics": true,
+    "journey.header_names_published_batch_and_role": true,
+    "journey.metrics_equal_snapshot": true,
+    "journey.mismatch_reference_matches_trace": true,
+    "journey.mismatch_date_matches_trace": true,
+    "journey.mismatch_amounts_match_trace": true,
+    "journey.drill_through_verifies_source_rows": true,
+    "journey.planted_finding_labelled_planted": true,
+    "journey.known_false_positive_labelled_not_planted": true,
+    "journey.keyboard_reaches_and_activates_verify": true,
+    "journey.keyboard_path_within_target": true,
+    "websocket.websocket_stream_through_proxy_received_frames": true,
+    "session.sign_out_returns_to_login_form": true
+  },
+  "details": {
+    "blocked_observed": {
+      "root": {
+        "status": 302,
+        "location": "/oauth2/sign_in?rd=/"
+      },
+      "health": {
+        "status": 302,
+        "location": "/oauth2/sign_in?rd=/_stcore/health"
+      },
+      "websocket": {
+        "status": 302,
+        "location": "/oauth2/sign_in?rd=/_stcore/stream"
+      },
+      "spoofed_no_session": {
+        "status": 302,
+        "location": "/oauth2/sign_in?rd=/"
+      },
+      "wrong_password": {
+        "path": "/dex/auth/local/login",
+        "session_cookie": false
+      }
+    },
+    "roles_observed": {
+      "summary": {
+        "role_line": "summary (summary@finrecon.local)",
+        "verify_button": 0
+      },
+      "summary_spoofing": {
+        "role_line": "summary (summary@finrecon.local)",
+        "verify_button": 0
+      },
+      "norole": {
+        "errors": [
+          "Access denied: no FinRecon role for this user (none). Nothing from this batch is shown."
+        ]
+      }
+    },
+    "journey": {
+      "checks": {
+        "header_names_published_batch_and_role": true,
+        "metrics_equal_snapshot": true,
+        "mismatch_reference_matches_trace": true,
+        "mismatch_date_matches_trace": true,
+        "mismatch_amounts_match_trace": true,
+        "drill_through_verifies_source_rows": true,
+        "planted_finding_labelled_planted": true,
+        "known_false_positive_labelled_not_planted": true,
+        "keyboard_reaches_and_activates_verify": true,
+        "keyboard_path_within_target": true
+      },
+      "metrics_shown": {
+        "Figures in batch": "123",
+        "Matched": "91",
+        "Breaks shown": "32",
+        "Quality checks failed": "0",
+        "Findings shown": "14"
+      },
+      "metrics_expected": {
+        "Figures in batch": "123",
+        "Matched": "91",
+        "Breaks shown": "32",
+        "Quality checks failed": "0",
+        "Findings shown": "14"
+      },
+      "mismatch": {
+        "figure_id": "REC-PAY-00019",
+        "screen_line": "Selected REC-PAY-00019 \u00b7 status fee_fx_difference \u00b7 posted 2026-09-20 \u00b7 reference PAY-00019 \u00b7 ledger -SGD 559.93 \u00b7 bank -SGD 560.68 \u00b7 difference SGD 0.75",
+        "trace": {
+          "reference": "PAY-00019",
+          "posted_on": "2026-09-20",
+          "ledger": "-SGD 559.93",
+          "bank": "-SGD 560.68",
+          "difference": "SGD 0.75",
+          "source_ids": [
+            "BK-00019",
+            "GL-00019"
+          ]
+        }
+      },
+      "labels_seen": {
+        "AUD-after_hours-GL-00046": "planted",
+        "AUD-near_threshold-GL-00074": "not planted"
+      },
+      "keys_to_verify": 14,
+      "keyboard_target": 38,
+      "key_sequence": "10 Tab, 3 ArrowRight, 1 Enter"
+    },
+    "sockets": [
+      {
+        "url": "ws://127.0.0.1:<proxy port>/_stcore/stream",
+        "frames": 11
+      },
+      {
+        "url": "ws://127.0.0.1:<proxy port>/_stcore/stream",
+        "frames": 411
+      },
+      {
+        "url": "ws://127.0.0.1:<proxy port>/_stcore/stream",
+        "frames": 102
+      }
+    ],
+    "stack_removed": true,
+    "app_server_stopped": true
+  },
+  "screenshot": "evidence/browser/proxy_reviewer.png",
+  "limits": [
+    "Local demo identity provider with three static users and random per-run passwords; no real directory, MFA or TLS.",
+    "Plain HTTP on 127.0.0.1; cookies are not marked Secure.",
+    "Synthetic fixture data; batch IDs refer to deleted temporary batches.",
+    "Functional check of the login path, not a penetration test or security review."
+  ]
+}

@@ -188,6 +188,23 @@ def selected_summary(figure_id: str, rec, findings) -> str:
             f" · reviewed amount {money_or_dash(row['amount_cents'])}")
 
 
+# Streamlit draws st.table headers in a faded grey (3.7:1 measured); this keeps
+# them at body-text contrast. The selector is scoped to the table by Styler.
+TABLE_HEADER_STYLE = [{"selector": "th, th *", "props": [("color", "#31333F")]}]
+
+
+def plain_table(frame):
+    """A static HTML table whose first column is the row header.
+
+    Streamlit ignores ``Styler.hide(axis="index")`` and would add a 0..n index
+    column under an empty header cell; using the first column as the index
+    avoids both and gives screen readers a meaningful row header.
+    """
+    import pandas as pd
+    frame = pd.DataFrame(frame).reset_index(drop=True)
+    return frame.set_index(frame.columns[0]).style.set_table_styles(TABLE_HEADER_STYLE)
+
+
 def label_for(figure_id: str, labels: dict[str, str]) -> str:
     if figure_id.startswith(("AUD-", "ANOM-")):
         return labels.get(figure_id, "not planted")
@@ -205,13 +222,15 @@ def evidence_for(figure_id: str, warehouse: Path, access: Access):
 
 
 def main() -> None:
+    import altair as alt
     import pandas as pd
     import streamlit as st
 
     st.set_page_config(page_title="FinRecon review", layout="wide")
     st.title("FinRecon: batch review")
-    st.caption("Synthetic SGD data. Read-only: no write-back, no payment correction. "
-               "Findings are review candidates, not proof of error or fraud.")
+    # Plain text rather than st.caption: the caption grey measured 3.7:1 contrast.
+    st.markdown("Synthetic SGD data. Read-only: no write-back, no payment correction. "
+                "Findings are review candidates, not proof of error or fraud.")
     try:
         headers = dict(st.context.headers)
     except Exception:  # Older Streamlit or a non-HTTP test session.
@@ -265,11 +284,25 @@ def main() -> None:
                       else (start_default, end_default))
         status_options = list(tables["dim_status"].sort_values("status_key")["status"])
         break_statuses = list(tables["dim_status"].query("is_break")["status"])
-        statuses = st.multiselect("Reconciliation status", status_options,
-                                  default=break_statuses)
         type_options = list(tables["dim_finding_type"].sort_values(
             "finding_type_key")["finding_type"])
-        types = st.multiselect("Finding type", type_options, default=type_options)
+        summary_slot = st.empty()
+        # Every selected option is a removable chip with its own Tab stop (16 by
+        # default). Collapsed, the expander is one stop; the line above it says
+        # what is selected, so the hidden state is never invisible.
+        with st.expander("Status and finding-type filters"):
+            statuses = st.multiselect("Reconciliation status", status_options,
+                                      default=break_statuses)
+            types = st.multiselect("Finding type", type_options, default=type_options)
+        summary_slot.markdown(
+            f"Showing {len(statuses)} of {len(status_options)} statuses "
+            f"({'break statuses' if set(statuses) == set(break_statuses) else 'custom'}) "
+            f"and {len(types)} of {len(type_options)} finding types.")
+        plain_tables = st.checkbox(
+            "Plain tables (every row as text, for screen readers)",
+            help="Interactive grids are drawn on a canvas and expose only the visible "
+                 "rows to assistive technology. Plain tables list every row as HTML "
+                 "text but cannot be sorted, searched or downloaded.")
         show_labels = reviewer and st.checkbox(
             "Show synthetic fixture labels (development only)")
 
@@ -288,14 +321,29 @@ def main() -> None:
     col4.metric("Quality checks failed", int((quality["status"] == "fail").sum()))
     col5.metric("Findings shown", len(queue))
 
+    def show_table(frame) -> None:
+        frame = pd.DataFrame(frame).reset_index(drop=True)
+        if plain_tables:
+            st.table(plain_table(frame))
+        else:
+            st.dataframe(frame, width="stretch", hide_index=True)
+
     # Tabs keep hidden sections out of the keyboard order: each table toolbar and
     # grid otherwise adds several Tab stops before the drill-through controls.
     tab_breaks, tab_quality, tab_findings, tab_drill = st.tabs(
         ["Breaks", "Quality controls", "Finding queue", "Drill-through"])
     with tab_breaks:
-        st.subheader("Reconciliation status (date filter applied)")
-        st.bar_chart(in_window.groupby("status").size().rename("figures").to_frame())
-        st.subheader("Aged-break overview")
+        st.header("Reconciliation status (date filter applied)")
+        counts = in_window.groupby("status").size().rename("figures").reset_index()
+        # Altair rather than st.bar_chart: Vega's "..." actions menu is an unnamed
+        # <summary> and an extra Tab stop; the description becomes the chart's label.
+        st.altair_chart(alt.Chart(counts).mark_bar().encode(
+            x=alt.X("status:N", title="status"), y=alt.Y("figures:Q", title="figures"),
+            tooltip=["status", "figures"]).properties(
+            description="Bar chart of figures by reconciliation status: " + ", ".join(
+                f"{row.status} {row.figures}" for row in counts.itertuples()),
+            usermeta={"embedOptions": {"actions": False}}), use_container_width=True)
+        st.header("Aged-break overview")
         breaks["age_bucket"] = [age_bucket(days) for days in breaks["age_days"]]
         overview = []
         for _, _, label in AGE_BUCKETS:
@@ -303,32 +351,31 @@ def main() -> None:
             overview.append({"age bucket": label, "breaks": len(group),
                              "absolute difference": format_sgd(
                                  group["difference_cents"].abs().sum())})
-        st.dataframe(overview, width="stretch", hide_index=True)
-        st.dataframe(pd.DataFrame({
+        # Five rows: a static HTML table exposes every cell and adds no Tab stops.
+        st.table(plain_table(overview))
+        show_table(pd.DataFrame({
             "figure_id": breaks["figure_id"], "reference": breaks["reference"],
             "status": breaks["status"], "posted_on": breaks["posted_on"],
             "age_days": breaks["age_days"],
             "difference (ledger - bank)": [format_sgd(value)
                                            for value in breaks["difference_cents"]],
             "explanation": breaks["explanation"]}).sort_values(
-                ["age_days", "figure_id"], ascending=[False, True]),
-            width="stretch", hide_index=True)
+                ["age_days", "figure_id"], ascending=[False, True]))
 
     with tab_quality:
-        st.subheader("Delivery and quality controls")
+        st.header("Delivery and quality controls")
         failed = quality[quality["status"] == "fail"]
         if len(failed):
             st.error(f"{len(failed)} control(s) failed in this batch.")
         else:
             st.success(f"All {len(quality)} controls passed when this batch was built.")
-        st.dataframe(quality.sort_values(["status", "check_name"])[
-            ["check_name", "check_group", "status", "evidence_count", "description"]],
-            width="stretch", hide_index=True)
+        show_table(quality.sort_values(["status", "check_name"])[
+            ["check_name", "check_group", "status", "evidence_count", "description"]])
 
     labels = fixture_labels(paths.data_dir) if show_labels else {}
     with tab_findings:
-        st.subheader("Finding queue")
-        st.caption("Rule, model and contract findings for human review. A finding is not a "
+        st.header("Finding queue")
+        st.markdown("Rule, model and contract findings for human review. A finding is not a "
                    "fraud accusation; IsolationForest scores are not probabilities.")
         view = pd.DataFrame({
             "figure_id": queue["figure_id"], "finding_type": queue["finding_type"],
@@ -338,11 +385,10 @@ def main() -> None:
             "explanation": queue["explanation"]})
         if show_labels:
             view["fixture label"] = [label_for(figure, labels) for figure in view["figure_id"]]
-        st.dataframe(view.sort_values(["age_days", "figure_id"], ascending=[False, True]),
-                     width="stretch", hide_index=True)
+        show_table(view.sort_values(["age_days", "figure_id"], ascending=[False, True]))
 
     with tab_drill:
-        st.subheader("Drill through to source evidence")
+        st.header("Drill through to source evidence")
         options = list(breaks["figure_id"]) + list(queue["figure_id"])
         if not reviewer:
             st.info(f"Your role ({access.role}) does not include source files or source rows. "
@@ -365,16 +411,15 @@ def main() -> None:
                     st.success("Source hashes match the load manifest and current file bytes.")
             bridge = tables["bridge_figure_source"]
             links = bridge[bridge["figure_id"] == figure_id]
-            st.dataframe(pd.DataFrame({
+            show_table(pd.DataFrame({
                 "source": links["source_name"],
                 "file": [Path(value).name for value in links["source_file"]],
                 "line": links["source_row"],
-                "sha256": [value[:16] + "…" for value in links["source_hash"]]}),
-                width="stretch", hide_index=True)
+                "sha256": [value[:16] + "…" for value in links["source_hash"]]}))
             if evidence is not None:
                 st.json(json.loads(json.dumps(evidence, default=str)))
-    st.caption("Roles are enforced by this app from a trusted proxy header or, locally, "
-               "FINRECON_ROLE. This is a local review build: do not load real financial data.")
+    st.markdown("Roles are enforced by this app from a trusted proxy header or, locally, "
+                "FINRECON_ROLE. This is a local review build: do not load real financial data.")
 
 
 if __name__ == "__main__":

@@ -1,0 +1,1729 @@
+{
+  "generated_at": "2026-10-23T11:00:47+00:00",
+  "label": "before",
+  "what": "axe-core scan, keyboard Tab cycle and Glide-grid accessibility-tree probe of dashboard.py on a disposable synthetic batch",
+  "environment": {
+    "python": "3.12.13",
+    "platform": "macOS-15.3.1-arm64-arm-64bit",
+    "chrome": "156.0.8078.47",
+    "streamlit": "1.50.0",
+    "playwright": "1.64.0",
+    "axe_core": "4.13.0",
+    "axe_tags": [
+      "wcag2a",
+      "wcag2aa",
+      "wcag21a",
+      "wcag21aa",
+      "wcag22aa",
+      "best-practice"
+    ]
+  },
+  "totals": {
+    "unique_violations": 71,
+    "unique_wcag_violations": 32,
+    "unique_best_practice_violations": 39,
+    "rules": {
+      "aria-allowed-attr": {
+        "impact": "critical",
+        "wcag": true,
+        "elements": 7
+      },
+      "button-name": {
+        "impact": "critical",
+        "wcag": true,
+        "elements": 2
+      },
+      "color-contrast": {
+        "impact": "serious",
+        "wcag": true,
+        "elements": 22
+      },
+      "heading-order": {
+        "impact": "moderate",
+        "wcag": false,
+        "elements": 4
+      },
+      "region": {
+        "impact": "moderate",
+        "wcag": false,
+        "elements": 35
+      },
+      "summary-name": {
+        "impact": "serious",
+        "wcag": true,
+        "elements": 1
+      }
+    }
+  },
+  "per_screen": {
+    "S1_reviewer_breaks": {
+      "violated_rules": 6,
+      "violation_nodes": 37,
+      "wcag_rules": [
+        "aria-allowed-attr",
+        "button-name",
+        "color-contrast",
+        "summary-name"
+      ],
+      "best_practice_rules": [
+        "heading-order",
+        "region"
+      ],
+      "incomplete_rules": [
+        "color-contrast",
+        "duplicate-id-aria"
+      ]
+    },
+    "S2_reviewer_quality": {
+      "violated_rules": 5,
+      "violation_nodes": 37,
+      "wcag_rules": [
+        "aria-allowed-attr",
+        "button-name",
+        "color-contrast"
+      ],
+      "best_practice_rules": [
+        "heading-order",
+        "region"
+      ],
+      "incomplete_rules": [
+        "duplicate-id-aria"
+      ]
+    },
+    "S3_reviewer_findings": {
+      "violated_rules": 5,
+      "violation_nodes": 37,
+      "wcag_rules": [
+        "aria-allowed-attr",
+        "button-name",
+        "color-contrast"
+      ],
+      "best_practice_rules": [
+        "heading-order",
+        "region"
+      ],
+      "incomplete_rules": [
+        "duplicate-id-aria"
+      ]
+    },
+    "S4_reviewer_drill_verified": {
+      "violated_rules": 5,
+      "violation_nodes": 36,
+      "wcag_rules": [
+        "aria-allowed-attr",
+        "button-name",
+        "color-contrast"
+      ],
+      "best_practice_rules": [
+        "heading-order",
+        "region"
+      ],
+      "incomplete_rules": [
+        "color-contrast",
+        "duplicate-id-aria"
+      ]
+    },
+    "S5_summary_drill": {
+      "violated_rules": 5,
+      "violation_nodes": 34,
+      "wcag_rules": [
+        "aria-allowed-attr",
+        "button-name",
+        "color-contrast"
+      ],
+      "best_practice_rules": [
+        "heading-order",
+        "region"
+      ],
+      "incomplete_rules": [
+        "duplicate-id-aria"
+      ]
+    },
+    "S6_access_denied": {
+      "violated_rules": 4,
+      "violation_nodes": 5,
+      "wcag_rules": [
+        "aria-allowed-attr",
+        "button-name",
+        "color-contrast"
+      ],
+      "best_practice_rules": [
+        "region"
+      ],
+      "incomplete_rules": []
+    }
+  },
+  "keyboard": {
+    "breaks_tab": {
+      "complete_cycle": true,
+      "total_stops": 45,
+      "sidebar_stops": 19,
+      "multiselect_stops": 16,
+      "tabpanel_stops": 22,
+      "unnamed_stops": [
+        "button <button> in stBaseButton-headerNoPadding",
+        "DisclosureTriangle <summary> in stVegaLiteChart",
+        "Canvas <canvas> in stDataFrameResizable",
+        "Canvas <canvas> in stDataFrameResizable",
+        "Canvas <canvas> in stDataFrameResizable",
+        "Canvas <canvas> in stDataFrameResizable",
+        "Canvas <canvas> in stDataFrameResizable",
+        "Canvas <canvas> in stDataFrameResizable",
+        "Canvas <canvas> in stDataFrameResizable",
+        "Canvas <canvas> in stDataFrameResizable",
+        "Canvas <canvas> in stDataFrameResizable",
+        "Canvas <canvas> in stDataFrameResizable",
+        "group <div> in stDataFrameResizable"
+      ],
+      "sequence": [
+        "textbox: Select a date. [sidebar]",
+        "textbox: Select a date range. [sidebar]",
+        "button: timing_difference, close by backspace [sidebar]",
+        "button: fee_fx_difference, close by backspace [sidebar]",
+        "button: many_to_one, close by backspace [sidebar]",
+        "button: duplicate, close by backspace [sidebar]",
+        "button: missing_in_bank, close by backspace [sidebar]",
+        "button: missing_in_ledger, close by backspace [sidebar]",
+        "button: unexplained, close by backspace [sidebar]",
+        "combobox: Selected timing_difference, fee_fx_difference, many_to_one,  [sidebar]",
+        "button: duplicate_payment, close by backspace [sidebar]",
+        "button: near_threshold, close by backspace [sidebar]",
+        "button: split_purchase, close by backspace [sidebar]",
+        "button: sod_conflict, close by backspace [sidebar]",
+        "button: after_hours, close by backspace [sidebar]",
+        "button: isolation_forest_candidate, close by backspace [sidebar]",
+        "button: invoice_above_contract_cap, close by backspace [sidebar]",
+        "combobox: Selected duplicate_payment, near_threshold, split_purchase,  [sidebar]",
+        "checkbox: Show synthetic fixture labels (development only) [sidebar]",
+        "button: Deploy",
+        "button: ",
+        "generic: FinRecon: batch review Synthetic SGD data. Read-only: no wri",
+        "tab: Breaks",
+        "button: Show data",
+        "button: Fullscreen",
+        "DisclosureTriangle: ",
+        "button: Show/hide columns",
+        "button: Download as CSV",
+        "button: Search",
+        "button: Fullscreen",
+        "Canvas: ",
+        "Canvas: ",
+        "Canvas: ",
+        "button: Show/hide columns",
+        "button: Download as CSV",
+        "button: Search",
+        "button: Fullscreen",
+        "Canvas: ",
+        "Canvas: ",
+        "Canvas: ",
+        "Canvas: ",
+        "Canvas: ",
+        "Canvas: ",
+        "Canvas: ",
+        "group: "
+      ]
+    },
+    "drill_through_tab": {
+      "complete_cycle": true,
+      "total_stops": 33,
+      "sidebar_stops": 19,
+      "multiselect_stops": 16,
+      "tabpanel_stops": 10,
+      "unnamed_stops": [
+        "Canvas <canvas> in stDataFrameResizable",
+        "Canvas <canvas> in stDataFrameResizable",
+        "Canvas <canvas> in stDataFrameResizable",
+        "Canvas <canvas> in stDataFrameResizable",
+        "button <button> in stBaseButton-headerNoPadding"
+      ],
+      "sequence": [
+        "combobox: Selected REC-ORPHAN-00. Figure ID",
+        "button: Verify source rows",
+        "button: Show/hide columns",
+        "button: Download as CSV",
+        "button: Search",
+        "button: Fullscreen",
+        "Canvas: ",
+        "Canvas: ",
+        "Canvas: ",
+        "Canvas: ",
+        "textbox: Select a date. [sidebar]",
+        "textbox: Select a date range. [sidebar]",
+        "button: timing_difference, close by backspace [sidebar]",
+        "button: fee_fx_difference, close by backspace [sidebar]",
+        "button: many_to_one, close by backspace [sidebar]",
+        "button: duplicate, close by backspace [sidebar]",
+        "button: missing_in_bank, close by backspace [sidebar]",
+        "button: missing_in_ledger, close by backspace [sidebar]",
+        "button: unexplained, close by backspace [sidebar]",
+        "combobox: Selected timing_difference, fee_fx_difference, many_to_one,  [sidebar]",
+        "button: duplicate_payment, close by backspace [sidebar]",
+        "button: near_threshold, close by backspace [sidebar]",
+        "button: split_purchase, close by backspace [sidebar]",
+        "button: sod_conflict, close by backspace [sidebar]",
+        "button: after_hours, close by backspace [sidebar]",
+        "button: isolation_forest_candidate, close by backspace [sidebar]",
+        "button: invoice_above_contract_cap, close by backspace [sidebar]",
+        "combobox: Selected duplicate_payment, near_threshold, split_purchase,  [sidebar]",
+        "checkbox: Show synthetic fixture labels (development only) [sidebar]",
+        "button: Deploy",
+        "button: ",
+        "generic: FinRecon: batch review Synthetic SGD data. Read-only: no wri",
+        "tab: Drill-through"
+      ]
+    }
+  },
+  "grids": {
+    "S1": [
+      {
+        "table": "aged-break overview",
+        "expected_rows": 5,
+        "expected_columns": 3,
+        "expected_cells": 15,
+        "ax_role_counts": {
+          "grid": 1,
+          "table": 0,
+          "row": 6,
+          "gridcell": 15,
+          "cell": 0,
+          "columnheader": 3,
+          "rowheader": 0
+        },
+        "data_cells_exposed": 15,
+        "first_key_found": true,
+        "last_key_found": true,
+        "keys_found": 1
+      },
+      {
+        "table": "breaks",
+        "expected_rows": 32,
+        "expected_columns": 7,
+        "expected_cells": 224,
+        "ax_role_counts": {
+          "grid": 1,
+          "table": 0,
+          "row": 13,
+          "gridcell": 84,
+          "cell": 0,
+          "columnheader": 7,
+          "rowheader": 0
+        },
+        "data_cells_exposed": 84,
+        "first_key_found": true,
+        "last_key_found": false,
+        "keys_found": 12
+      }
+    ],
+    "S2": [
+      {
+        "table": "quality controls",
+        "expected_rows": 74,
+        "expected_columns": 5,
+        "expected_cells": 370,
+        "ax_role_counts": {
+          "grid": 1,
+          "table": 0,
+          "row": 13,
+          "gridcell": 60,
+          "cell": 0,
+          "columnheader": 5,
+          "rowheader": 0
+        },
+        "data_cells_exposed": 60,
+        "first_key_found": false,
+        "last_key_found": false,
+        "keys_found": 0
+      }
+    ],
+    "S3": [
+      {
+        "table": "finding queue",
+        "expected_rows": 14,
+        "expected_columns": 7,
+        "expected_cells": 98,
+        "ax_role_counts": {
+          "grid": 1,
+          "table": 0,
+          "row": 13,
+          "gridcell": 84,
+          "cell": 0,
+          "columnheader": 7,
+          "rowheader": 0
+        },
+        "data_cells_exposed": 84,
+        "first_key_found": true,
+        "last_key_found": false,
+        "keys_found": 12
+      }
+    ]
+  },
+  "axe_raw": {
+    "S1_reviewer_breaks": {
+      "violations": [
+        {
+          "id": "aria-allowed-attr",
+          "impact": "critical",
+          "tags": [
+            "cat.aria",
+            "wcag2a",
+            "wcag412",
+            "EN-301-549",
+            "EN-9.4.1.2",
+            "RGAAv4",
+            "RGAA-7.1.1"
+          ],
+          "help": "Elements must only use supported ARIA attributes",
+          "nodes": [
+            {
+              "target": ".stSidebar",
+              "summary": "Fix all of the following:\n  ARIA attribute is not allowed: aria-expanded=\"true\""
+            },
+            {
+              "target": "#MainMenu",
+              "summary": "Fix all of the following:\n  ARIA attribute is not allowed: aria-expanded=\"false\""
+            },
+            {
+              "target": ".st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(4) > .st-emotion-cache-uwwqev.e13s7uld0[data-testid=\"stFullScreenFrame\"] > .stDataFrame.st-emotion-cache-1kta6t8.e8es05k0 > .st-emotion-cache-2h0ntr.stElementToolbar[target=\".e8es05k0\"] > .st-emotion-cache-12rj9lz.ekeylwq1 > div[aria-haspopup=\"true\"]",
+              "summary": "Fix all of the following:\n  ARIA attribute is not allowed: aria-expanded=\"false\""
+            },
+            {
+              "target": "#tabs-bui5-tabpanel-0 > .st-emotion-cache-tn0cau.stVerticalBlock[direction=\"column\"] > .st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(5) > .st-emotion-cache-uwwqev.e13s7uld0[data-testid=\"stFullScreenFrame\"] > .stDataFrame.st-emotion-cache-1kta6t8.e8es05k0 > .st-emotion-cache-2h0ntr.stElementToolbar[target=\".e8es05k0\"] > .st-emotion-cache-12rj9lz.ekeylwq1 > div[aria-haspopup=\"true\"]",
+              "summary": "Fix all of the following:\n  ARIA attribute is not allowed: aria-expanded=\"false\""
+            }
+          ],
+          "wcag": true,
+          "node_count": 4
+        },
+        {
+          "id": "button-name",
+          "impact": "critical",
+          "tags": [
+            "cat.name-role-value",
+            "wcag2a",
+            "wcag412",
+            "section508",
+            "section508.22.a",
+            "TTv5",
+            "TT6.a",
+            "EN-301-549",
+            "EN-9.4.1.2",
+            "ACT",
+            "RGAAv4",
+            "RGAA-11.9.1"
+          ],
+          "help": "Buttons must have discernible text",
+          "nodes": [
+            {
+              "target": "#MainMenu > .st-emotion-cache-1aplgmp.e8vg11g15[kind=\"headerNoPadding\"]",
+              "summary": "Fix any of the following:\n  Element does not have inner text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  "
+            }
+          ],
+          "wcag": true,
+          "node_count": 1
+        },
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "tags": [
+            "cat.color",
+            "wcag2aa",
+            "wcag143",
+            "TTv5",
+            "TT13.c",
+            "EN-301-549",
+            "EN-9.1.4.3",
+            "ACT",
+            "RGAAv4",
+            "RGAA-3.2.1"
+          ],
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": [
+            {
+              "target": "span[title=\"timing_difference\"]",
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.3 (foreground color: #ffffff, background color: #ff4b4b, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": "span[title=\"fee_fx_difference\"]",
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.3 (foreground color: #ffffff, background color: #ff4b4b, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": "span[title=\"many_to_one\"]",
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.3 (foreground color: #ffffff, background color: #ff4b4b, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": "span[title=\"duplicate\"]",
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.3 (foreground color: #ffffff, background color: #ff4b4b, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": "span[title=\"missing_in_bank\"]",
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.3 (foreground color: #ffffff, background color: #ff4b4b, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": "span[title=\"duplicate_payment\"]",
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.3 (foreground color: #ffffff, background color: #ff4b4b, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": "span[title=\"near_threshold\"]",
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.3 (foreground color: #ffffff, background color: #ff4b4b, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": "span[title=\"split_purchase\"]",
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.3 (foreground color: #ffffff, background color: #ff4b4b, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": "span[title=\"sod_conflict\"]",
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.3 (foreground color: #ffffff, background color: #ff4b4b, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": "span[title=\"after_hours\"]",
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.3 (foreground color: #ffffff, background color: #ff4b4b, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".stMainBlockContainer > .st-emotion-cache-tn0cau.stVerticalBlock[direction=\"column\"] > .st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(2) > .stMarkdown[data-testid=\"stMarkdown\"] > .st-emotion-cache-1h79fwp.et2rgd20[data-testid=\"stCaptionContainer\"] > p",
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.68 (foreground color: #83858c, background color: #ffffff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": "#tabs-bui5-tab-0 > .st-emotion-cache-3qzj0x.et2rgd20[data-testid=\"stMarkdownContainer\"] > p",
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.3 (foreground color: #ff4b4b, background color: #ffffff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ],
+          "wcag": true,
+          "node_count": 12
+        },
+        {
+          "id": "heading-order",
+          "impact": "moderate",
+          "tags": [
+            "cat.semantics",
+            "best-practice"
+          ],
+          "help": "Heading levels should only increase by one",
+          "nodes": [
+            {
+              "target": "#reconciliation-status-date-filter-applied",
+              "summary": "Fix any of the following:\n  Heading order invalid"
+            }
+          ],
+          "wcag": false,
+          "node_count": 1
+        },
+        {
+          "id": "region",
+          "impact": "moderate",
+          "tags": [
+            "cat.keyboard",
+            "best-practice",
+            "RGAAv4",
+            "RGAA-9.2.1"
+          ],
+          "help": "All page content should be contained by landmarks",
+          "nodes": [
+            {
+              "target": ".e4man115 > .st-emotion-cache-tn0cau.stVerticalBlock[direction=\"column\"] > .st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(1)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(2) > .stDateInput[data-testid=\"stDateInput\"] > .st-ae",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(2) > .stDateInput[data-testid=\"stDateInput\"] > p:nth-child(3)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(3) > .stDateInput[data-testid=\"stDateInput\"] > .st-ae",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(3) > .stDateInput[data-testid=\"stDateInput\"] > p:nth-child(3)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(4) > .stMultiSelect[data-testid=\"stMultiSelect\"] > .st-emotion-cache-abycrm.euzcfsp0 > .st-bz.st-ae[data-baseweb=\"select\"] > .st-dh.st-di.st-dg > .st-dl.st-dn.st-dj > .st-ef.st-eh.st-eg > .st-ei.st-ez[aria-autocomplete=\"list\"]",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(5) > .stMultiSelect[data-testid=\"stMultiSelect\"] > .st-emotion-cache-abycrm.euzcfsp0 > .st-bz.st-ae[data-baseweb=\"select\"] > .st-dh.st-di.st-dg > .st-dl.st-dn.st-dj > .st-ef.st-eh.st-eg > .st-ei.st-ez[aria-autocomplete=\"list\"]",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".e4man115 > .st-emotion-cache-tn0cau.stVerticalBlock[direction=\"column\"] > .st-emotion-cache-zh2fnc.stElementContainer[width=\"fit-content\"]",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".stMainBlockContainer > .st-emotion-cache-tn0cau.stVerticalBlock[direction=\"column\"] > .st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(1)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".stMainBlockContainer > .st-emotion-cache-tn0cau.stVerticalBlock[direction=\"column\"] > .st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(2)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".stMainBlockContainer > .st-emotion-cache-tn0cau.stVerticalBlock[direction=\"column\"] > .st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(3)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-18kf3ut",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": "#tabs-bui5-tab-0",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": "#tabs-bui5-tab-1",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": "#tabs-bui5-tab-2",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": "#tabs-bui5-tab-3",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": "#tabs-bui5-tabpanel-0",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(6)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            }
+          ],
+          "wcag": false,
+          "node_count": 18
+        },
+        {
+          "id": "summary-name",
+          "impact": "serious",
+          "tags": [
+            "cat.name-role-value",
+            "wcag2a",
+            "wcag412",
+            "section508",
+            "section508.22.a",
+            "TTv5",
+            "TT6.a",
+            "EN-301-549",
+            "EN-9.4.1.2"
+          ],
+          "help": "Summary elements must have discernible text",
+          "nodes": [
+            {
+              "target": "summary",
+              "summary": "Fix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute"
+            }
+          ],
+          "wcag": true,
+          "node_count": 1
+        }
+      ],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": 14
+        },
+        {
+          "id": "duplicate-id-aria",
+          "impact": "critical",
+          "nodes": 1
+        }
+      ]
+    },
+    "S2_reviewer_quality": {
+      "violations": [
+        {
+          "id": "aria-allowed-attr",
+          "impact": "critical",
+          "tags": [
+            "cat.aria",
+            "wcag2a",
+            "wcag412",
+            "EN-301-549",
+            "EN-9.4.1.2",
+            "RGAAv4",
+            "RGAA-7.1.1"
+          ],
+          "help": "Elements must only use supported ARIA attributes",
+          "nodes": [
+            {
+              "target": ".stSidebar",
+              "summary": "Fix all of the following:\n  ARIA attribute is not allowed: aria-expanded=\"true\""
+            },
+            {
+              "target": "#MainMenu",
+              "summary": "Fix all of the following:\n  ARIA attribute is not allowed: aria-expanded=\"false\""
+            },
+            {
+              "target": "#tabs-bui5-tabpanel-1 > .st-emotion-cache-tn0cau.stVerticalBlock[direction=\"column\"] > .st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(3) > .st-emotion-cache-uwwqev.e13s7uld0[data-testid=\"stFullScreenFrame\"] > .stDataFrame.st-emotion-cache-1kta6t8.e8es05k0 > .st-emotion-cache-2h0ntr.stElementToolbar[target=\".e8es05k0\"] > .st-emotion-cache-12rj9lz.ekeylwq1 > div[aria-haspopup=\"true\"]",
+              "summary": "Fix all of the following:\n  ARIA attribute is not allowed: aria-expanded=\"false\""
+            }
+          ],
+          "wcag": true,
+          "node_count": 3
+        },
+        {
+          "id": "button-name",
+          "impact": "critical",
+          "tags": [
+            "cat.name-role-value",
+            "wcag2a",
+            "wcag412",
+            "section508",
+            "section508.22.a",
+            "TTv5",
+            "TT6.a",
+            "EN-301-549",
+            "EN-9.4.1.2",
+            "ACT",
+            "RGAAv4",
+            "RGAA-11.9.1"
+          ],
+          "help": "Buttons must have discernible text",
+          "nodes": [
+            {
+              "target": "#MainMenu > .st-emotion-cache-1aplgmp.e8vg11g15[kind=\"headerNoPadding\"]",
+              "summary": "Fix any of the following:\n  Element does not have inner text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  "
+            }
+          ],
+          "wcag": true,
+          "node_count": 1
+        },
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "tags": [
+            "cat.color",
+            "wcag2aa",
+            "wcag143",
+            "TTv5",
+            "TT13.c",
+            "EN-301-549",
+            "EN-9.1.4.3",
+            "ACT",
+            "RGAAv4",
+            "RGAA-3.2.1"
+          ],
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": [
+            {
+              "target": "span[title=\"timing_difference\"]",
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.3 (foreground color: #ffffff, background color: #ff4b4b, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": "span[title=\"fee_fx_difference\"]",
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.3 (foreground color: #ffffff, background color: #ff4b4b, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": "span[title=\"many_to_one\"]",
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.3 (foreground color: #ffffff, background color: #ff4b4b, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": "span[title=\"duplicate\"]",
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.3 (foreground color: #ffffff, background color: #ff4b4b, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": "span[title=\"missing_in_bank\"]",
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.3 (foreground color: #ffffff, background color: #ff4b4b, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": "span[title=\"duplicate_payment\"]",
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.3 (foreground color: #ffffff, background color: #ff4b4b, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": "span[title=\"near_threshold\"]",
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.3 (foreground color: #ffffff, background color: #ff4b4b, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": "span[title=\"split_purchase\"]",
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.3 (foreground color: #ffffff, background color: #ff4b4b, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": "span[title=\"sod_conflict\"]",
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.3 (foreground color: #ffffff, background color: #ff4b4b, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": "span[title=\"after_hours\"]",
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.3 (foreground color: #ffffff, background color: #ff4b4b, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".stMainBlockContainer > .st-emotion-cache-tn0cau.stVerticalBlock[direction=\"column\"] > .st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(2) > .stMarkdown[data-testid=\"stMarkdown\"] > .st-emotion-cache-1h79fwp.et2rgd20[data-testid=\"stCaptionContainer\"] > p",
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.68 (foreground color: #83858c, background color: #ffffff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": "#tabs-bui5-tab-1 > .st-emotion-cache-3qzj0x.et2rgd20[data-testid=\"stMarkdownContainer\"] > p",
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.3 (foreground color: #ff4b4b, background color: #ffffff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".st-emotion-cache-1xmp9w2 > .st-emotion-cache-3uj0rx.et2rgd20[data-testid=\"stMarkdownContainer\"] > p",
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.49 (foreground color: #158237, background color: #e9f9ee, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(6) > .stMarkdown[data-testid=\"stMarkdown\"] > .st-emotion-cache-1h79fwp.et2rgd20[data-testid=\"stCaptionContainer\"] > p",
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.68 (foreground color: #83858c, background color: #ffffff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ],
+          "wcag": true,
+          "node_count": 14
+        },
+        {
+          "id": "heading-order",
+          "impact": "moderate",
+          "tags": [
+            "cat.semantics",
+            "best-practice"
+          ],
+          "help": "Heading levels should only increase by one",
+          "nodes": [
+            {
+              "target": "#delivery-and-quality-controls",
+              "summary": "Fix any of the following:\n  Heading order invalid"
+            }
+          ],
+          "wcag": false,
+          "node_count": 1
+        },
+        {
+          "id": "region",
+          "impact": "moderate",
+          "tags": [
+            "cat.keyboard",
+            "best-practice",
+            "RGAAv4",
+            "RGAA-9.2.1"
+          ],
+          "help": "All page content should be contained by landmarks",
+          "nodes": [
+            {
+              "target": ".e4man115 > .st-emotion-cache-tn0cau.stVerticalBlock[direction=\"column\"] > .st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(1)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(2) > .stDateInput[data-testid=\"stDateInput\"] > .st-ae",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(2) > .stDateInput[data-testid=\"stDateInput\"] > p:nth-child(3)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(3) > .stDateInput[data-testid=\"stDateInput\"] > .st-ae",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(3) > .stDateInput[data-testid=\"stDateInput\"] > p:nth-child(3)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(4) > .stMultiSelect[data-testid=\"stMultiSelect\"] > .st-emotion-cache-abycrm.euzcfsp0 > .st-bz.st-ae[data-baseweb=\"select\"] > .st-dh.st-di.st-dg > .st-dl.st-dn.st-dj > .st-ef.st-eh.st-eg > .st-ei.st-ez[aria-autocomplete=\"list\"]",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(5) > .stMultiSelect[data-testid=\"stMultiSelect\"] > .st-emotion-cache-abycrm.euzcfsp0 > .st-bz.st-ae[data-baseweb=\"select\"] > .st-dh.st-di.st-dg > .st-dl.st-dn.st-dj > .st-ef.st-eh.st-eg > .st-ei.st-ez[aria-autocomplete=\"list\"]",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".e4man115 > .st-emotion-cache-tn0cau.stVerticalBlock[direction=\"column\"] > .st-emotion-cache-zh2fnc.stElementContainer[width=\"fit-content\"]",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".stMainBlockContainer > .st-emotion-cache-tn0cau.stVerticalBlock[direction=\"column\"] > .st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(1)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".stMainBlockContainer > .st-emotion-cache-tn0cau.stVerticalBlock[direction=\"column\"] > .st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(2)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".stMainBlockContainer > .st-emotion-cache-tn0cau.stVerticalBlock[direction=\"column\"] > .st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(3)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-18kf3ut",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": "#tabs-bui5-tab-0",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": "#tabs-bui5-tab-1",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": "#tabs-bui5-tab-2",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": "#tabs-bui5-tab-3",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": "#tabs-bui5-tabpanel-1",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(6)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            }
+          ],
+          "wcag": false,
+          "node_count": 18
+        }
+      ],
+      "incomplete": [
+        {
+          "id": "duplicate-id-aria",
+          "impact": "critical",
+          "nodes": 1
+        }
+      ]
+    },
+    "S3_reviewer_findings": {
+      "violations": [
+        {
+          "id": "aria-allowed-attr",
+          "impact": "critical",
+          "tags": [
+            "cat.aria",
+            "wcag2a",
+            "wcag412",
+            "EN-301-549",
+            "EN-9.4.1.2",
+            "RGAAv4",
+            "RGAA-7.1.1"
+          ],
+          "help": "Elements must only use supported ARIA attributes",
+          "nodes": [
+            {
+              "target": ".stSidebar",
+              "summary": "Fix all of the following:\n  ARIA attribute is not allowed: aria-expanded=\"true\""
+            },
+            {
+              "target": "#MainMenu",
+              "summary": "Fix all of the following:\n  ARIA attribute is not allowed: aria-expanded=\"false\""
+            },
+            {
+              "target": "#tabs-bui5-tabpanel-2 > .st-emotion-cache-tn0cau.stVerticalBlock[direction=\"column\"] > .st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(3) > .st-emotion-cache-uwwqev.e13s7uld0[data-testid=\"stFullScreenFrame\"] > .stDataFrame.st-emotion-cache-1kta6t8.e8es05k0 > .st-emotion-cache-2h0ntr.stElementToolbar[target=\".e8es05k0\"] > .st-emotion-cache-12rj9lz.ekeylwq1 > div[aria-haspopup=\"true\"]",
+              "summary": "Fix all of the following:\n  ARIA attribute is not allowed: aria-expanded=\"false\""
+            }
+          ],
+          "wcag": true,
+          "node_count": 3
+        },
+        {
+          "id": "button-name",
+          "impact": "critical",
+          "tags": [
+            "cat.name-role-value",
+            "wcag2a",
+            "wcag412",
+            "section508",
+            "section508.22.a",
+            "TTv5",
+            "TT6.a",
+            "EN-301-549",
+            "EN-9.4.1.2",
+            "ACT",
+            "RGAAv4",
+            "RGAA-11.9.1"
+          ],
+          "help": "Buttons must have discernible text",
+          "nodes": [
+            {
+              "target": "#MainMenu > .st-emotion-cache-1aplgmp.e8vg11g15[kind=\"headerNoPadding\"]",
+              "summary": "Fix any of the following:\n  Element does not have inner text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  "
+            }
+          ],
+          "wcag": true,
+          "node_count": 1
+        },
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "tags": [
+            "cat.color",
+            "wcag2aa",
+            "wcag143",
+            "TTv5",
+            "TT13.c",
+            "EN-301-549",
+            "EN-9.1.4.3",
+            "ACT",
+            "RGAAv4",
+            "RGAA-3.2.1"
+          ],
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": [
+            {
+              "target": "span[title=\"timing_difference\"]",
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.3 (foreground color: #ffffff, background color: #ff4b4b, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": "span[title=\"fee_fx_difference\"]",
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.3 (foreground color: #ffffff, background color: #ff4b4b, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": "span[title=\"many_to_one\"]",
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.3 (foreground color: #ffffff, background color: #ff4b4b, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": "span[title=\"duplicate\"]",
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.3 (foreground color: #ffffff, background color: #ff4b4b, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": "span[title=\"missing_in_bank\"]",
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.3 (foreground color: #ffffff, background color: #ff4b4b, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": "span[title=\"duplicate_payment\"]",
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.3 (foreground color: #ffffff, background color: #ff4b4b, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": "span[title=\"near_threshold\"]",
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.3 (foreground color: #ffffff, background color: #ff4b4b, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": "span[title=\"split_purchase\"]",
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.3 (foreground color: #ffffff, background color: #ff4b4b, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": "span[title=\"sod_conflict\"]",
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.3 (foreground color: #ffffff, background color: #ff4b4b, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": "span[title=\"after_hours\"]",
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.3 (foreground color: #ffffff, background color: #ff4b4b, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".stMainBlockContainer > .st-emotion-cache-tn0cau.stVerticalBlock[direction=\"column\"] > .st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(2) > .stMarkdown[data-testid=\"stMarkdown\"] > .st-emotion-cache-1h79fwp.et2rgd20[data-testid=\"stCaptionContainer\"] > p",
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.68 (foreground color: #83858c, background color: #ffffff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": "#tabs-bui5-tab-2 > .st-emotion-cache-3qzj0x.et2rgd20[data-testid=\"stMarkdownContainer\"] > p",
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.3 (foreground color: #ff4b4b, background color: #ffffff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": "#tabs-bui5-tabpanel-2 > .st-emotion-cache-tn0cau.stVerticalBlock[direction=\"column\"] > .st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(2) > .stMarkdown[data-testid=\"stMarkdown\"] > .st-emotion-cache-1h79fwp.et2rgd20[data-testid=\"stCaptionContainer\"] > p",
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.68 (foreground color: #83858c, background color: #ffffff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(6) > .stMarkdown[data-testid=\"stMarkdown\"] > .st-emotion-cache-1h79fwp.et2rgd20[data-testid=\"stCaptionContainer\"] > p",
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.68 (foreground color: #83858c, background color: #ffffff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ],
+          "wcag": true,
+          "node_count": 14
+        },
+        {
+          "id": "heading-order",
+          "impact": "moderate",
+          "tags": [
+            "cat.semantics",
+            "best-practice"
+          ],
+          "help": "Heading levels should only increase by one",
+          "nodes": [
+            {
+              "target": "#finding-queue",
+              "summary": "Fix any of the following:\n  Heading order invalid"
+            }
+          ],
+          "wcag": false,
+          "node_count": 1
+        },
+        {
+          "id": "region",
+          "impact": "moderate",
+          "tags": [
+            "cat.keyboard",
+            "best-practice",
+            "RGAAv4",
+            "RGAA-9.2.1"
+          ],
+          "help": "All page content should be contained by landmarks",
+          "nodes": [
+            {
+              "target": ".e4man115 > .st-emotion-cache-tn0cau.stVerticalBlock[direction=\"column\"] > .st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(1)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(2) > .stDateInput[data-testid=\"stDateInput\"] > .st-ae",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(2) > .stDateInput[data-testid=\"stDateInput\"] > p:nth-child(3)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(3) > .stDateInput[data-testid=\"stDateInput\"] > .st-ae",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(3) > .stDateInput[data-testid=\"stDateInput\"] > p:nth-child(3)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(4) > .stMultiSelect[data-testid=\"stMultiSelect\"] > .st-emotion-cache-abycrm.euzcfsp0 > .st-bz.st-ae[data-baseweb=\"select\"] > .st-dh.st-di.st-dg > .st-dl.st-dn.st-dj > .st-ef.st-eh.st-eg > .st-ei.st-ez[aria-autocomplete=\"list\"]",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(5) > .stMultiSelect[data-testid=\"stMultiSelect\"] > .st-emotion-cache-abycrm.euzcfsp0 > .st-bz.st-ae[data-baseweb=\"select\"] > .st-dh.st-di.st-dg > .st-dl.st-dn.st-dj > .st-ef.st-eh.st-eg > .st-ei.st-ez[aria-autocomplete=\"list\"]",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".e4man115 > .st-emotion-cache-tn0cau.stVerticalBlock[direction=\"column\"] > .st-emotion-cache-zh2fnc.stElementContainer[width=\"fit-content\"]",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".stMainBlockContainer > .st-emotion-cache-tn0cau.stVerticalBlock[direction=\"column\"] > .st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(1)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".stMainBlockContainer > .st-emotion-cache-tn0cau.stVerticalBlock[direction=\"column\"] > .st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(2)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".stMainBlockContainer > .st-emotion-cache-tn0cau.stVerticalBlock[direction=\"column\"] > .st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(3)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-18kf3ut",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": "#tabs-bui5-tab-0",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": "#tabs-bui5-tab-1",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": "#tabs-bui5-tab-2",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": "#tabs-bui5-tab-3",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": "#tabs-bui5-tabpanel-2",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(6)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            }
+          ],
+          "wcag": false,
+          "node_count": 18
+        }
+      ],
+      "incomplete": [
+        {
+          "id": "duplicate-id-aria",
+          "impact": "critical",
+          "nodes": 1
+        }
+      ]
+    },
+    "S4_reviewer_drill_verified": {
+      "violations": [
+        {
+          "id": "aria-allowed-attr",
+          "impact": "critical",
+          "tags": [
+            "cat.aria",
+            "wcag2a",
+            "wcag412",
+            "EN-301-549",
+            "EN-9.4.1.2",
+            "RGAAv4",
+            "RGAA-7.1.1"
+          ],
+          "help": "Elements must only use supported ARIA attributes",
+          "nodes": [
+            {
+              "target": ".stSidebar",
+              "summary": "Fix all of the following:\n  ARIA attribute is not allowed: aria-expanded=\"true\""
+            },
+            {
+              "target": "#MainMenu",
+              "summary": "Fix all of the following:\n  ARIA attribute is not allowed: aria-expanded=\"false\""
+            },
+            {
+              "target": ".st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(6) > .st-emotion-cache-uwwqev.e13s7uld0[data-testid=\"stFullScreenFrame\"] > .stDataFrame.st-emotion-cache-1kta6t8.e8es05k0 > .st-emotion-cache-2h0ntr.stElementToolbar[target=\".e8es05k0\"] > .st-emotion-cache-12rj9lz.ekeylwq1 > div[aria-haspopup=\"true\"]",
+              "summary": "Fix all of the following:\n  ARIA attribute is not allowed: aria-expanded=\"false\""
+            }
+          ],
+          "wcag": true,
+          "node_count": 3
+        },
+        {
+          "id": "button-name",
+          "impact": "critical",
+          "tags": [
+            "cat.name-role-value",
+            "wcag2a",
+            "wcag412",
+            "section508",
+            "section508.22.a",
+            "TTv5",
+            "TT6.a",
+            "EN-301-549",
+            "EN-9.4.1.2",
+            "ACT",
+            "RGAAv4",
+            "RGAA-11.9.1"
+          ],
+          "help": "Buttons must have discernible text",
+          "nodes": [
+            {
+              "target": "#MainMenu > .st-emotion-cache-1aplgmp.e8vg11g15[kind=\"headerNoPadding\"]",
+              "summary": "Fix any of the following:\n  Element does not have inner text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  "
+            }
+          ],
+          "wcag": true,
+          "node_count": 1
+        },
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "tags": [
+            "cat.color",
+            "wcag2aa",
+            "wcag143",
+            "TTv5",
+            "TT13.c",
+            "EN-301-549",
+            "EN-9.1.4.3",
+            "ACT",
+            "RGAAv4",
+            "RGAA-3.2.1"
+          ],
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": [
+            {
+              "target": "span[title=\"timing_difference\"]",
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.3 (foreground color: #ffffff, background color: #ff4b4b, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": "span[title=\"fee_fx_difference\"]",
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.3 (foreground color: #ffffff, background color: #ff4b4b, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": "span[title=\"many_to_one\"]",
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.3 (foreground color: #ffffff, background color: #ff4b4b, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": "span[title=\"duplicate\"]",
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.3 (foreground color: #ffffff, background color: #ff4b4b, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": "span[title=\"missing_in_bank\"]",
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.3 (foreground color: #ffffff, background color: #ff4b4b, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": "span[title=\"duplicate_payment\"]",
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.3 (foreground color: #ffffff, background color: #ff4b4b, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": "span[title=\"near_threshold\"]",
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.3 (foreground color: #ffffff, background color: #ff4b4b, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": "span[title=\"split_purchase\"]",
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.3 (foreground color: #ffffff, background color: #ff4b4b, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": "span[title=\"sod_conflict\"]",
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.3 (foreground color: #ffffff, background color: #ff4b4b, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": "span[title=\"after_hours\"]",
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.3 (foreground color: #ffffff, background color: #ff4b4b, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".stMainBlockContainer > .st-emotion-cache-tn0cau.stVerticalBlock[direction=\"column\"] > .st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(2) > .stMarkdown[data-testid=\"stMarkdown\"] > .st-emotion-cache-1h79fwp.et2rgd20[data-testid=\"stCaptionContainer\"] > p",
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.68 (foreground color: #83858c, background color: #ffffff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": "#tabs-bui5-tab-3 > .st-emotion-cache-3qzj0x.et2rgd20[data-testid=\"stMarkdownContainer\"] > p",
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.3 (foreground color: #ff4b4b, background color: #ffffff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(5) > .stAlert[data-testid=\"stAlert\"] > .stAlertContainer.st-fu.st-fv > .st-ft.st-ae > .st-emotion-cache-wmn9kq.en1c6do0[data-testid=\"stAlertContentSuccess\"] > .st-emotion-cache-1xmp9w2.e9q2xfh0 > .st-emotion-cache-3uj0rx.et2rgd20[data-testid=\"stMarkdownContainer\"] > p",
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 4.49 (foreground color: #158237, background color: #e9f9ee, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ],
+          "wcag": true,
+          "node_count": 13
+        },
+        {
+          "id": "heading-order",
+          "impact": "moderate",
+          "tags": [
+            "cat.semantics",
+            "best-practice"
+          ],
+          "help": "Heading levels should only increase by one",
+          "nodes": [
+            {
+              "target": "#drill-through-to-source-evidence",
+              "summary": "Fix any of the following:\n  Heading order invalid"
+            }
+          ],
+          "wcag": false,
+          "node_count": 1
+        },
+        {
+          "id": "region",
+          "impact": "moderate",
+          "tags": [
+            "cat.keyboard",
+            "best-practice",
+            "RGAAv4",
+            "RGAA-9.2.1"
+          ],
+          "help": "All page content should be contained by landmarks",
+          "nodes": [
+            {
+              "target": ".e4man115 > .st-emotion-cache-tn0cau.stVerticalBlock[direction=\"column\"] > .st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(1)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(2) > .stDateInput[data-testid=\"stDateInput\"] > .st-ae",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(2) > .stDateInput[data-testid=\"stDateInput\"] > p:nth-child(3)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(3) > .stDateInput[data-testid=\"stDateInput\"] > .st-ae",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(3) > .stDateInput[data-testid=\"stDateInput\"] > p:nth-child(3)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(4) > .stMultiSelect[data-testid=\"stMultiSelect\"] > .st-emotion-cache-abycrm.euzcfsp0 > .st-bz.st-ae[data-baseweb=\"select\"] > .st-dh.st-di.st-dg > .st-dl.st-dn.st-dj > .st-ef.st-eh.st-eg > .st-ei.st-ez[aria-autocomplete=\"list\"]",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(5) > .stMultiSelect[data-testid=\"stMultiSelect\"] > .st-emotion-cache-abycrm.euzcfsp0 > .st-bz.st-ae[data-baseweb=\"select\"] > .st-dh.st-di.st-dg > .st-dl.st-dn.st-dj > .st-ef.st-eh.st-eg > .st-ei.st-ez[aria-autocomplete=\"list\"]",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".e4man115 > .st-emotion-cache-tn0cau.stVerticalBlock[direction=\"column\"] > .st-emotion-cache-zh2fnc.stElementContainer[width=\"fit-content\"]",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".stMainBlockContainer > .st-emotion-cache-tn0cau.stVerticalBlock[direction=\"column\"] > .st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(1)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".stMainBlockContainer > .st-emotion-cache-tn0cau.stVerticalBlock[direction=\"column\"] > .st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(2)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".stMainBlockContainer > .st-emotion-cache-tn0cau.stVerticalBlock[direction=\"column\"] > .st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(3)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-18kf3ut",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": "#tabs-bui5-tab-0",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": "#tabs-bui5-tab-1",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": "#tabs-bui5-tab-2",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": "#tabs-bui5-tab-3",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": "#tabs-bui5-tabpanel-3",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".stMainBlockContainer > .st-emotion-cache-tn0cau.stVerticalBlock[direction=\"column\"] > .st-emotion-cache-1vo6xi6.stElementContainer.element-container:nth-child(6)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            }
+          ],
+          "wcag": false,
+          "node_count": 18
+        }
+      ],
+      "incomplete": [
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "nodes": 1
+        },
+        {
+          "id": "duplicate-id-aria",
+          "impact": "critical",
+          "nodes": 1
+        }
+      ]
+    },
+    "S5_summary_drill": {
+      "violations": [
+        {
+          "id": "aria-allowed-attr",
+          "impact": "critical",
+          "tags": [
+            "cat.aria",
+            "wcag2a",
+            "wcag412",
+            "EN-301-549",
+            "EN-9.4.1.2",
+            "RGAAv4",
+            "RGAA-7.1.1"
+          ],
+          "help": "Elements must only use supported ARIA attributes",
+          "nodes": [
+            {
+              "target": ".stSidebar",
+              "summary": "Fix all of the following:\n  ARIA attribute is not allowed: aria-expanded=\"true\""
+            },
+            {
+              "target": "#MainMenu",
+              "summary": "Fix all of the following:\n  ARIA attribute is not allowed: aria-expanded=\"false\""
+            }
+          ],
+          "wcag": true,
+          "node_count": 2
+        },
+        {
+          "id": "button-name",
+          "impact": "critical",
+          "tags": [
+            "cat.name-role-value",
+            "wcag2a",
+            "wcag412",
+            "section508",
+            "section508.22.a",
+            "TTv5",
+            "TT6.a",
+            "EN-301-549",
+            "EN-9.4.1.2",
+            "ACT",
+            "RGAAv4",
+            "RGAA-11.9.1"
+          ],
+          "help": "Buttons must have discernible text",
+          "nodes": [
+            {
+              "target": "#MainMenu > .st-emotion-cache-1aplgmp.e8vg11g15[kind=\"headerNoPadding\"]",
+              "summary": "Fix any of the following:\n  Element does not have inner text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  "
+            }
+          ],
+          "wcag": true,
+          "node_count": 1
+        },
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "tags": [
+            "cat.color",
+            "wcag2aa",
+            "wcag143",
+            "TTv5",
+            "TT13.c",
+            "EN-301-549",
+            "EN-9.1.4.3",
+            "ACT",
+            "RGAAv4",
+            "RGAA-3.2.1"
+          ],
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": [
+            {
+              "target": "span[title=\"timing_difference\"]",
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.3 (foreground color: #ffffff, background color: #ff4b4b, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": "span[title=\"fee_fx_difference\"]",
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.3 (foreground color: #ffffff, background color: #ff4b4b, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": "span[title=\"many_to_one\"]",
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.3 (foreground color: #ffffff, background color: #ff4b4b, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": "span[title=\"duplicate\"]",
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.3 (foreground color: #ffffff, background color: #ff4b4b, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": "span[title=\"missing_in_bank\"]",
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.3 (foreground color: #ffffff, background color: #ff4b4b, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": "span[title=\"duplicate_payment\"]",
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.3 (foreground color: #ffffff, background color: #ff4b4b, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": "span[title=\"near_threshold\"]",
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.3 (foreground color: #ffffff, background color: #ff4b4b, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": "span[title=\"split_purchase\"]",
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.3 (foreground color: #ffffff, background color: #ff4b4b, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": "span[title=\"sod_conflict\"]",
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.3 (foreground color: #ffffff, background color: #ff4b4b, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": "span[title=\"after_hours\"]",
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.3 (foreground color: #ffffff, background color: #ff4b4b, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".stMainBlockContainer > .st-emotion-cache-tn0cau.stVerticalBlock[direction=\"column\"] > .stElementContainer.element-container.st-emotion-cache-1vo6xi6:nth-child(2) > .stMarkdown[data-testid=\"stMarkdown\"] > .st-emotion-cache-1h79fwp.et2rgd20[data-testid=\"stCaptionContainer\"] > p",
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.68 (foreground color: #83858c, background color: #ffffff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": "#tabs-bui5-tab-3 > .st-emotion-cache-3qzj0x.et2rgd20[data-testid=\"stMarkdownContainer\"] > p",
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.3 (foreground color: #ff4b4b, background color: #ffffff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            {
+              "target": ".stElementContainer.element-container.st-emotion-cache-1vo6xi6:nth-child(6) > .stMarkdown[data-testid=\"stMarkdown\"] > .st-emotion-cache-1h79fwp.et2rgd20[data-testid=\"stCaptionContainer\"] > p",
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.68 (foreground color: #83858c, background color: #ffffff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ],
+          "wcag": true,
+          "node_count": 13
+        },
+        {
+          "id": "heading-order",
+          "impact": "moderate",
+          "tags": [
+            "cat.semantics",
+            "best-practice"
+          ],
+          "help": "Heading levels should only increase by one",
+          "nodes": [
+            {
+              "target": "#drill-through-to-source-evidence",
+              "summary": "Fix any of the following:\n  Heading order invalid"
+            }
+          ],
+          "wcag": false,
+          "node_count": 1
+        },
+        {
+          "id": "region",
+          "impact": "moderate",
+          "tags": [
+            "cat.keyboard",
+            "best-practice",
+            "RGAAv4",
+            "RGAA-9.2.1"
+          ],
+          "help": "All page content should be contained by landmarks",
+          "nodes": [
+            {
+              "target": ".e4man115 > .st-emotion-cache-tn0cau.stVerticalBlock[direction=\"column\"] > .stElementContainer.element-container.st-emotion-cache-1vo6xi6:nth-child(1)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".stElementContainer.element-container.st-emotion-cache-1vo6xi6:nth-child(2) > .stDateInput[data-testid=\"stDateInput\"] > .st-ae",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".stElementContainer.element-container.st-emotion-cache-1vo6xi6:nth-child(2) > .stDateInput[data-testid=\"stDateInput\"] > p:nth-child(3)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".stElementContainer.element-container.st-emotion-cache-1vo6xi6:nth-child(3) > .stDateInput[data-testid=\"stDateInput\"] > .st-ae",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".stElementContainer.element-container.st-emotion-cache-1vo6xi6:nth-child(3) > .stDateInput[data-testid=\"stDateInput\"] > p:nth-child(3)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".stElementContainer.element-container.st-emotion-cache-1vo6xi6:nth-child(4) > .stMultiSelect[data-testid=\"stMultiSelect\"] > .st-emotion-cache-abycrm.euzcfsp0 > .st-bz.st-az[data-baseweb=\"select\"] > .st-dg.st-dh.st-di > .st-dj.st-dk.st-dl > .st-ef.st-eh.st-eg > .st-ei.st-ez[aria-autocomplete=\"list\"]",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".stElementContainer.element-container.st-emotion-cache-1vo6xi6:nth-child(5) > .stMultiSelect[data-testid=\"stMultiSelect\"] > .st-emotion-cache-abycrm.euzcfsp0 > .st-bz.st-az[data-baseweb=\"select\"] > .st-dg.st-dh.st-di > .st-dj.st-dk.st-dl > .st-ef.st-eh.st-eg > .st-ei.st-ez[aria-autocomplete=\"list\"]",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".stMainBlockContainer > .st-emotion-cache-tn0cau.stVerticalBlock[direction=\"column\"] > .stElementContainer.element-container.st-emotion-cache-1vo6xi6:nth-child(1)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".stMainBlockContainer > .st-emotion-cache-tn0cau.stVerticalBlock[direction=\"column\"] > .stElementContainer.element-container.st-emotion-cache-1vo6xi6:nth-child(2)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".stMainBlockContainer > .st-emotion-cache-tn0cau.stVerticalBlock[direction=\"column\"] > .stElementContainer.element-container.st-emotion-cache-1vo6xi6:nth-child(3)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".st-emotion-cache-18kf3ut",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": "#tabs-bui5-tab-0",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": "#tabs-bui5-tab-1",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": "#tabs-bui5-tab-2",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": "#tabs-bui5-tab-3",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": "#tabs-bui5-tabpanel-3",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".stElementContainer.element-container.st-emotion-cache-1vo6xi6:nth-child(6)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            }
+          ],
+          "wcag": false,
+          "node_count": 17
+        }
+      ],
+      "incomplete": [
+        {
+          "id": "duplicate-id-aria",
+          "impact": "critical",
+          "nodes": 1
+        }
+      ]
+    },
+    "S6_access_denied": {
+      "violations": [
+        {
+          "id": "aria-allowed-attr",
+          "impact": "critical",
+          "tags": [
+            "cat.aria",
+            "wcag2a",
+            "wcag412",
+            "EN-301-549",
+            "EN-9.4.1.2",
+            "RGAAv4",
+            "RGAA-7.1.1"
+          ],
+          "help": "Elements must only use supported ARIA attributes",
+          "nodes": [
+            {
+              "target": "#MainMenu",
+              "summary": "Fix all of the following:\n  ARIA attribute is not allowed: aria-expanded=\"false\""
+            }
+          ],
+          "wcag": true,
+          "node_count": 1
+        },
+        {
+          "id": "button-name",
+          "impact": "critical",
+          "tags": [
+            "cat.name-role-value",
+            "wcag2a",
+            "wcag412",
+            "section508",
+            "section508.22.a",
+            "TTv5",
+            "TT6.a",
+            "EN-301-549",
+            "EN-9.4.1.2",
+            "ACT",
+            "RGAAv4",
+            "RGAA-11.9.1"
+          ],
+          "help": "Buttons must have discernible text",
+          "nodes": [
+            {
+              "target": ".st-emotion-cache-1aplgmp",
+              "summary": "Fix any of the following:\n  Element does not have inner text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  "
+            }
+          ],
+          "wcag": true,
+          "node_count": 1
+        },
+        {
+          "id": "color-contrast",
+          "impact": "serious",
+          "tags": [
+            "cat.color",
+            "wcag2aa",
+            "wcag143",
+            "TTv5",
+            "TT13.c",
+            "EN-301-549",
+            "EN-9.1.4.3",
+            "ACT",
+            "RGAAv4",
+            "RGAA-3.2.1"
+          ],
+          "help": "Elements must meet minimum color contrast ratio thresholds",
+          "nodes": [
+            {
+              "target": ".st-emotion-cache-1h79fwp > p",
+              "summary": "Fix any of the following:\n  Element has insufficient color contrast of 3.68 (foreground color: #83858c, background color: #ffffff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          ],
+          "wcag": true,
+          "node_count": 1
+        },
+        {
+          "id": "region",
+          "impact": "moderate",
+          "tags": [
+            "cat.keyboard",
+            "best-practice",
+            "RGAAv4",
+            "RGAA-9.2.1"
+          ],
+          "help": "All page content should be contained by landmarks",
+          "nodes": [
+            {
+              "target": ".stElementContainer.element-container.st-emotion-cache-1vo6xi6:nth-child(1)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            },
+            {
+              "target": ".stElementContainer.element-container.st-emotion-cache-1vo6xi6:nth-child(2)",
+              "summary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+            }
+          ],
+          "wcag": false,
+          "node_count": 2
+        }
+      ],
+      "incomplete": []
+    }
+  },
+  "limits": [
+    "Automated checks only: axe-core detects a subset of WCAG failures and lists others as needing manual review.",
+    "No screen-reader (VoiceOver/NVDA) pass, zoom/reflow check or user test was done; these need a person.",
+    "This is not a statement of accessibility or WCAG conformance.",
+    "Synthetic data on a single machine and viewport."
+  ]
+}

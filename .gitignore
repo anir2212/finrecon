@@ -13,3 +13,5 @@ ops/*.plist
 data/batches/
 data/summary_export/
 data/tableau/
+ops/auth/local/
+node_modules/

@@ -16,7 +16,9 @@ Writes compact evidence to ``evidence/browser_walkthrough.json`` and three
 screenshots to ``evidence/browser/``. Prints SKIP and exits 0 without evidence
 when Chrome or Playwright is missing. Run with an interpreter that has
 ``requirements-dashboard.txt`` and ``requirements-browser.txt`` installed.
-This is a local functional check, not an accessibility audit or a load test.
+This is a local functional check, not an accessibility audit or a load test;
+``eval/a11y_audit.py`` runs the automated accessibility scan and
+``eval/proxy_walkthrough.py`` repeats the reviewer journey behind the real login.
 """
 
 from __future__ import annotations
@@ -91,9 +93,9 @@ def port_open(port: int) -> bool:
 
 
 @contextmanager
-def streamlit_server(env_overrides: dict, log_path: Path):
-    """Run the dashboard headless on a free localhost port and always stop it."""
-    port = free_port()
+def streamlit_server(env_overrides: dict, log_path: Path, port: int | None = None):
+    """Run the dashboard headless on a localhost port (free by default); always stop it."""
+    port = port or free_port()
     env = {key: value for key, value in os.environ.items() if not key.startswith("FINRECON_")}
     env.update({"STREAMLIT_BROWSER_GATHER_USAGE_STATS": "false", **env_overrides})
     command = [sys.executable, "-m", "streamlit", "run", "dashboard.py",
@@ -473,8 +475,9 @@ def main() -> int:
         "screenshots": [str(path.relative_to(ROOT)) for path in shots.values()],
         "limits": ["Synthetic fixture data; batch IDs refer to deleted temporary batches.",
                    "Local single-machine check, not an accessibility audit or load test.",
-                   "Proxy mode is exercised with browser-set headers standing in for a "
-                   "reverse proxy; no real identity provider was used."],
+                   "Proxy mode here uses browser-set headers standing in for a reverse "
+                   "proxy; eval/proxy_walkthrough.py repeats the journey behind the real "
+                   "local login (ops/auth)."],
     }
     RESULT.write_text(json.dumps(evidence, indent=2, default=str) + "\n", encoding="utf-8")
     print(json.dumps({"passed": evidence["passed"], "total": evidence["total"],

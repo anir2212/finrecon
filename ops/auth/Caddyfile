@@ -1,0 +1,58 @@
+# FinRecon local login proxy. See compose.yaml for the overall layout.
+{
+	admin off
+	auto_https off
+}
+
+:8080 {
+	# Role assignment lives here, in the proxy, keyed by the e-mail that
+	# oauth2-proxy confirmed. Anyone else who signs in gets "none", which the
+	# app denies.
+	map {http.request.header.X-Auth-Request-Email} {finrecon_role} {
+		reviewer@finrecon.local reviewer
+		summary@finrecon.local summary
+		default none
+	}
+
+	# `route` keeps these steps in the written order.
+	route {
+		# 1. Never trust identity headers from the client.
+		request_header -X-Forwarded-Role
+		request_header -X-Forwarded-User
+		request_header -X-FinRecon-Proxy-Token
+		request_header -X-Auth-Request-Email
+		request_header -X-Auth-Request-User
+		request_header -X-Auth-Request-Groups
+		request_header -X-Auth-Request-Preferred-Username
+		request_header -X-Auth-Request-Access-Token
+
+		# 2. Login endpoints are public.
+		handle /dex/* {
+			reverse_proxy dex:5556
+		}
+		handle /oauth2/* {
+			reverse_proxy oauth2-proxy:4180 {
+				header_up X-Real-IP {remote_host}
+				header_up X-Forwarded-Uri {uri}
+			}
+		}
+
+		# 3. Everything else, including Streamlit's websocket, needs a session.
+		handle {
+			forward_auth oauth2-proxy:4180 {
+				uri /oauth2/auth
+				header_up X-Real-IP {remote_host}
+				copy_headers X-Auth-Request-Email
+				@unauthenticated status 401
+				handle_response @unauthenticated {
+					redir * /oauth2/sign_in?rd={http.request.uri.path} 302
+				}
+			}
+			reverse_proxy {$FINRECON_APP_UPSTREAM} {
+				header_up X-Forwarded-Role {finrecon_role}
+				header_up X-Forwarded-User {http.request.header.X-Auth-Request-Email}
+				header_up X-FinRecon-Proxy-Token {$FINRECON_PROXY_TOKEN}
+			}
+		}
+	}
+}

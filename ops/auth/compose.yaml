@@ -1,0 +1,73 @@
+# Local login in front of the FinRecon Streamlit view.
+#
+#   browser -> Caddy (127.0.0.1:${FINRECON_AUTH_PORT}) -> Streamlit on the host
+#                 |-- /oauth2/* -> oauth2-proxy (session cookie, OIDC client)
+#                 `-- /dex/*    -> Dex (OIDC provider with static demo users)
+#
+# Caddy strips every client-sent identity header, asks oauth2-proxy whether the
+# request has a valid session, maps the signed-in e-mail to a FinRecon role and
+# only then forwards the request with the role, user and shared proxy token.
+# Only Caddy publishes a port, and only on 127.0.0.1. Dex keeps users and
+# sessions in memory. Secrets come from the git-ignored file written by
+# ops/auth/setup_local.py; nothing secret is stored in this file.
+name: finrecon-auth
+
+services:
+  dex:
+    image: dexidp/dex:v2.45.1
+    command: ["dex", "serve", "/etc/dex/config.yaml"]
+    volumes:
+      - ${FINRECON_AUTH_LOCAL_DIR:-./local}/dex.yaml:/etc/dex/config.yaml:ro
+    restart: "no"
+
+  oauth2-proxy:
+    image: quay.io/oauth2-proxy/oauth2-proxy:v7.15.5
+    depends_on: [dex]
+    environment:
+      OAUTH2_PROXY_CLIENT_SECRET: ${OAUTH2_PROXY_CLIENT_SECRET:?run ops/auth/setup_local.py first}
+      OAUTH2_PROXY_COOKIE_SECRET: ${OAUTH2_PROXY_COOKIE_SECRET:?run ops/auth/setup_local.py first}
+    command:
+      - --http-address=0.0.0.0:4180
+      - --provider=oidc
+      - --provider-display-name=FinRecon local Dex
+      - --client-id=finrecon-proxy
+      # The browser reaches Dex through Caddy; oauth2-proxy reaches it on the
+      # Compose network. Discovery would return browser URLs, so the endpoints
+      # are given explicitly and the issuer is still checked in every ID token.
+      - --oidc-issuer-url=http://127.0.0.1:${FINRECON_AUTH_PORT}/dex
+      - --skip-oidc-discovery=true
+      - --login-url=http://127.0.0.1:${FINRECON_AUTH_PORT}/dex/auth
+      - --redeem-url=http://dex:5556/dex/token
+      - --oidc-jwks-url=http://dex:5556/dex/keys
+      - --redirect-url=http://127.0.0.1:${FINRECON_AUTH_PORT}/oauth2/callback
+      - --scope=openid email profile
+      - --code-challenge-method=S256
+      # The default "force" makes Dex show a consent page even with
+      # skipApprovalScreen; this is a first-party local client.
+      - --approval-prompt=auto
+      - --email-domain=*
+      - --upstream=static://202
+      # oauth2-proxy publishes no port; only Caddy on the Compose network can
+      # reach it, and Caddy overwrites X-Forwarded-For itself.
+      - --reverse-proxy=true
+      - --set-xauthrequest=true
+      - --skip-provider-button=true
+      - --cookie-name=_finrecon_auth
+      - --cookie-secure=false
+      - --cookie-samesite=lax
+      - --cookie-expire=8h
+    restart: "no"
+
+  caddy:
+    image: caddy:2.11.7
+    depends_on: [oauth2-proxy, dex]
+    environment:
+      FINRECON_PROXY_TOKEN: ${FINRECON_PROXY_TOKEN:?run ops/auth/setup_local.py first}
+      FINRECON_APP_UPSTREAM: host.docker.internal:${FINRECON_APP_PORT}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    ports:
+      - "127.0.0.1:${FINRECON_AUTH_PORT}:8080"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+    restart: "no"

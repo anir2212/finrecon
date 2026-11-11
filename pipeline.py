@@ -190,6 +190,7 @@ def run_batch(batch_root: Path = DEFAULT_ROOT, seed: int = 17, count: int = 120,
                    "completed_at": completed.isoformat(), "as_of_date": as_of.isoformat(),
                    "as_of_source": "explicit" if as_of_date else "latest ledger/bank/invoice business date",
                    "business_timezone": BUSINESS_TIMEZONE,
+                   "warehouse_sha256": sha256_file(paths.warehouse),
                    "snapshot_manifest_sha256": sha256_file(
                        paths.snapshot / "snapshot_manifest.json"),
                    "reports": report_hashes}

@@ -10,6 +10,7 @@ from unittest import mock
 import duckdb
 
 import batches
+import data_dictionary
 import pipeline
 import reporting
 from dashboard import ages, load_state
@@ -44,6 +45,7 @@ class BatchPublicationTests(unittest.TestCase):
         self.assertEqual(self.first["report"]["evaluation"]["correct"], 123)
         pointer = batches.read_pointer(self.root)
         self.assertEqual(pointer["as_of_source"], "latest ledger/bank/invoice business date")
+        self.assertEqual(pointer["warehouse_sha256"], batches.sha256_file(paths.warehouse))
         for name, digest in pointer["reports"].items():
             path = paths.reports / name
             self.assertEqual(batches.sha256_file(path), digest)
@@ -74,6 +76,24 @@ class BatchPublicationTests(unittest.TestCase):
             columns, rows = reporting.read_snapshot_table(paths.snapshot, "fct_reconciliation", fmt)
             keys = sorted(row[columns.index("figure_id")] for row in rows)
             self.assertEqual(keys, totals["fct_reconciliation"]["keys"])
+
+    def test_dictionary_describes_current_control_and_bi_columns(self):
+        paths = batches.resolve_published(self.root)
+        db = duckdb.connect(str(paths.warehouse), read_only=True)
+        try:
+            expected = {f"bi.{name}" for name in reporting.TABLES} | {
+                "audit.load_manifest", "audit.batch_manifest"}
+            self.assertEqual(set(data_dictionary.EXTRA_TABLES), expected)
+            for qualified in sorted(expected):
+                columns = [row[1] for row in db.execute(
+                    f"pragma table_info('{qualified}')").fetchall()]
+                self.assertEqual(list(data_dictionary.EXTRA_TABLES[qualified]["columns"]),
+                                 columns, qualified)
+        finally:
+            db.close()
+        dictionary = Path(__file__).resolve().parent / "docs/DATA_DICTIONARY.md"
+        self.assertEqual(dictionary.read_text(encoding="utf-8"),
+                         data_dictionary.render() + "\n")
 
     def test_view_state_shows_published_batch_without_errors(self):
         state = load_state(self.root, now=datetime.now(timezone.utc))
@@ -163,6 +183,25 @@ class IntegrityRefusalTests(unittest.TestCase):
         self.assertFalse(state["ok"])
         self.assertIn("Report changed after publication: quality_report.json.", state["errors"])
 
+    def test_modified_warehouse_blocks_published_readers_and_view(self):
+        with self.paths.warehouse.open("ab") as warehouse:
+            warehouse.write(b"unexpected appended bytes")
+        with self.assertRaisesRegex(ValueError, "warehouse is missing or changed"):
+            batches.resolve_published(self.root)
+        state = load_state(self.root)
+        self.assertFalse(state["ok"])
+        self.assertTrue(any("warehouse is missing or changed" in error
+                            for error in state["errors"]))
+
+    def test_legacy_pointer_without_warehouse_digest_blocks_view(self):
+        pointer = batches.read_pointer(self.root)
+        del pointer["warehouse_sha256"]
+        batches.atomic_write_json(self.root / batches.POINTER, pointer)
+        with self.assertRaisesRegex(ValueError, "no warehouse SHA-256"):
+            batches.resolve_published(self.root)
+        state = load_state(self.root)
+        self.assertFalse(state["ok"])
+
     def test_explicit_as_of_date_drives_age_and_earlier_date_is_refused(self):
         as_of = date(2026, 10, 15)
         db = duckdb.connect(str(self.paths.warehouse))
@@ -203,9 +242,16 @@ class PointerHelperTests(unittest.TestCase):
                 paths = batches.batch_paths(root, batch_id)
                 paths.directory.mkdir()
                 batches.write_manifest(paths, status=status)
+                paths.warehouse.write_bytes(batch_id.encode("ascii"))
             with self.assertRaises(ValueError):
                 batches.publish(root, {"batch_id": ids[2]})
-            batches.publish(root, {"batch_id": ids[0]})
+            complete = batches.batch_paths(root, ids[0])
+            pointer = {"batch_id": ids[0],
+                       "warehouse_sha256": batches.sha256_file(complete.warehouse)}
+            with self.assertRaisesRegex(ValueError, "warehouse changed"):
+                batches.publish(root, {**pointer, "warehouse_sha256": "0" * 64})
+            self.assertFalse((root / batches.POINTER).exists())
+            batches.publish(root, pointer)
             removed = batches.prune(root, keep=1)
             self.assertEqual(removed, [ids[1]])
             self.assertTrue((root / ids[0]).is_dir() and (root / ids[2]).is_dir())

@@ -70,7 +70,11 @@ def batch_paths(root: Path, batch_id: str) -> BatchPaths:
 
 
 def sha256_file(path: Path) -> str:
-    return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+    digest = hashlib.sha256()
+    with Path(path).open("rb") as source:
+        for block in iter(lambda: source.read(1024 * 1024), b""):
+            digest.update(block)
+    return digest.hexdigest()
 
 
 def atomic_write_json(path: Path, value) -> None:
@@ -108,6 +112,10 @@ def publish(root: Path, pointer: dict) -> None:
     manifest = json.loads(paths.manifest.read_text(encoding="utf-8"))
     if manifest.get("status") != "complete":
         raise ValueError(f"cannot publish batch with status {manifest.get('status')}")
+    if not re.fullmatch(r"[0-9a-f]{64}", pointer.get("warehouse_sha256", "")):
+        raise ValueError("cannot publish a batch without a warehouse SHA-256")
+    if sha256_file(paths.warehouse) != pointer["warehouse_sha256"]:
+        raise ValueError("cannot publish a batch whose warehouse changed")
     atomic_write_json(Path(root) / POINTER, pointer)
 
 
@@ -140,6 +148,12 @@ def resolve_published(root: Path | None = None) -> BatchPaths:
     manifest = json.loads(paths.manifest.read_text(encoding="utf-8"))
     if manifest.get("status") != "complete" or manifest.get("batch_id") != paths.batch_id:
         raise ValueError(f"published batch {paths.batch_id} is not complete")
+    digest = pointer.get("warehouse_sha256", "")
+    if not re.fullmatch(r"[0-9a-f]{64}", digest):
+        raise ValueError(f"published batch {paths.batch_id} has no warehouse SHA-256; "
+                         "run `make all` to publish a verified batch")
+    if not paths.warehouse.is_file() or sha256_file(paths.warehouse) != digest:
+        raise ValueError(f"published batch {paths.batch_id} warehouse is missing or changed")
     return paths
 
 
